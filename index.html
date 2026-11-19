@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aquilo — Outdoor air purification station</title>
+<meta name="description" content="Aquilo is an ionization-based outdoor air purification station developed by a student team at the National Polytechnic University of Armenia.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="canonical" href="https://aquilo.am/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aquilo.am/">
+<meta property="og:title" content="Aquilo — Outdoor air purification station">
+<meta property="og:description" content="Ionization-based outdoor air purification station by a student team from NPUA, Armenia.">
+<meta property="og:image" content="https://aquilo.am/media/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Montserrat:wght@700&family=Noto+Sans+Armenian:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7f8; --bg-2:#eef0f2; --card:#ffffff; --ink:#0e1114; --ink-2:#30363c; --mute:#646c75; --line:#e2e5e9;
+  --accent:#1a64b0; --navy:#12355b; --cyan:#5fd8ff;
+  --dark:#15181c; --dark-2:#1e2227; --dark-ink:#eef1f4; --dark-mute:#9aa3ad; --dark-line:#2c3138;
+  --sans:'Inter','Noto Sans Armenian',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono','Noto Sans Armenian',ui-monospace,monospace;
+  --gut:clamp(16px,4vw,48px); --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+picture{display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.w{max-width:1240px;margin:0 auto;padding:0 var(--gut)}
+.lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+html[lang=hy] .lbl{letter-spacing:.02em}
+.tag{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.tag::before{content:"";width:28px;height:1px;background:currentColor}
+.dk .tag{color:var(--cyan)}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px)}
+header .w{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Montserrat',var(--sans);font-weight:700;font-size:1rem;letter-spacing:.1em;color:var(--navy)}
+.mark img{height:30px;width:auto}
+header nav{display:flex;gap:26px;font-size:.875rem}
+header nav a{text-decoration:none;color:var(--mute)}
+header nav a:hover{color:var(--ink)}
+.lang{display:flex;gap:2px;padding:3px;border-radius:999px;background:var(--bg-2)}
+.lang button{background:none;border:0;padding:5px 11px;border-radius:999px;color:var(--mute);cursor:pointer;font-family:var(--sans);font-size:.74rem;font-weight:500}
+.lang button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+@media(max-width:900px){header nav{display:none}}
+
+/* type */
+h1,h2,h3{font-weight:500;letter-spacing:-.022em;color:var(--ink)}
+html[lang=hy] h1,html[lang=hy] h2,html[lang=hy] h3{letter-spacing:-.005em}
+.dk h1,.dk h2,.dk h3{color:var(--dark-ink)}
+
+/* hero */
+.hero{padding:clamp(40px,7vw,96px) 0 clamp(56px,7vw,96px)}
+.hero-grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{font-size:clamp(2.4rem,5vw,4.3rem);line-height:1.04;margin:22px 0 22px}
+html[lang=hy] .hero h1{font-size:clamp(2rem,3.9vw,3.3rem);line-height:1.14}
+.lede{font-size:clamp(1.02rem,1.3vw,1.14rem);color:var(--ink-2);max-width:50ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:999px;text-decoration:none;font-size:.92rem;font-weight:500;border:1px solid transparent;cursor:pointer;background:none}
+.btn.pri{background:var(--ink);color:#fff}
+.btn.pri:hover{background:var(--navy)}
+.btn.sec{border-color:var(--line);color:var(--ink);background:var(--card)}
+.btn.sec:hover{border-color:#c9ced4}
+.btn svg{width:14px;height:14px}
+.now{display:flex;gap:10px;align-items:center;margin-top:28px;font-size:.84rem;color:var(--mute)}
+.now i{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 16%,transparent)}
+.hero figure{margin:0}
+.hero figure img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:var(--r);background:#2b2f34}
+figcaption{font-size:.78rem;color:var(--mute);margin-top:10px;line-height:1.5}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:clamp(48px,6vw,80px);padding-top:28px;border-top:1px solid var(--line)}
+.facts b{display:block;font-weight:500;font-size:clamp(1.4rem,2.2vw,1.9rem);letter-spacing:-.02em;line-height:1.15}
+.facts span{display:block;margin-top:6px;font-size:.84rem;color:var(--mute)}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero figure{order:-1}.facts{grid-template-columns:1fr 1fr;row-gap:28px}}
+
+/* sections */
+section{padding:clamp(72px,9vw,128px) 0}
+.alt{background:var(--card)}
+.sh{margin-bottom:clamp(36px,4.5vw,60px);max-width:760px}
+.sh h2{font-size:clamp(1.8rem,3.3vw,2.75rem);line-height:1.1;margin-top:16px}
+html[lang=hy] .sh h2{font-size:clamp(1.55rem,2.7vw,2.2rem);line-height:1.22}
+.sh p{margin-top:16px;color:var(--ink-2);max-width:60ch}
+.dk .sh p{color:var(--dark-mute)}
+
+/* film */
+.dk{background:var(--dark);color:var(--dark-ink)}
+.film{padding-bottom:clamp(64px,8vw,104px)}
+.player{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#000}
+.player video{width:100%;height:100%;object-fit:cover;background:#000}
+.player picture,.player .pimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.play{position:absolute;inset:0;display:grid;place-items:center;border:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45));cursor:pointer}
+.play span{display:flex;align-items:center;gap:14px;padding:14px 22px 14px 16px;border-radius:999px;background:rgba(14,17,20,.55);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:.92rem}
+.play i{width:40px;height:40px;border-radius:50%;border:1px solid rgba(95,216,255,.7);display:grid;place-items:center}
+.play i::after{content:"";margin-left:3px;border-left:11px solid var(--cyan);border-top:7px solid transparent;border-bottom:7px solid transparent}
+.play:hover span{background:rgba(14,17,20,.75)}
+.player.on .play,.player.on picture{display:none}
+.chaps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+@media(max-width:800px){.chaps{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}}
+.chaps button{flex:none;display:flex;align-items:baseline;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid var(--dark-line);background:var(--dark-2);color:var(--dark-ink);cursor:pointer;font-size:.84rem;text-align:left}
+.chaps button:hover,.chaps button.cur{border-color:color-mix(in srgb,var(--cyan) 60%,transparent)}
+.chaps b{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--cyan)}
+.chaps time{font-family:var(--mono);font-size:.72rem;color:var(--dark-mute)}
+
+/* problem */
+.prob{display:grid;grid-template-columns:7fr 5fr;gap:clamp(32px,5vw,80px);align-items:start}
+.quote{font-size:clamp(1.3rem,2.1vw,1.75rem);line-height:1.35;font-weight:400;letter-spacing:-.012em;color:var(--ink)}
+html[lang=hy] .quote{font-size:clamp(1.12rem,1.75vw,1.45rem)}
+.prose p{color:var(--ink-2);max-width:62ch}
+.prose p+p{margin-top:1em}
+.figs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(40px,5vw,64px)}
+.figs div{background:var(--card);border-radius:var(--r);padding:24px}
+.figs b{display:block;font-weight:500;font-size:clamp(1.9rem,3.2vw,2.6rem);line-height:1;letter-spacing:-.03em;margin-bottom:12px;color:var(--navy)}
+.figs p{font-size:.9rem;color:var(--mute)}
+.src{margin-top:20px}
+@media(max-width:860px){.prob{grid-template-columns:1fr}.figs{grid-template-columns:1fr}}
+
+/* how */
+.how-grid{display:grid;grid-template-columns:7fr 5fr;gap:clamp(32px,5vw,72px);align-items:start}
+.viewer{position:relative;aspect-ratio:16/11;border-radius:var(--r);overflow:hidden;background:#2a2e33;color:var(--dark-ink)}
+.viewer>picture{position:absolute;inset:0}.viewer>picture img{width:100%;height:100%;object-fit:cover}
+.viewer model-viewer{position:absolute;inset:0;width:100%;height:100%;background:#2a2e33;--poster-color:transparent}
+.v-open{position:absolute;left:16px;bottom:16px;display:flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.2);background:rgba(14,17,20,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;cursor:pointer;font-size:.86rem}
+.v-open:hover{background:rgba(14,17,20,.8)}
+.v-open i{width:8px;height:8px;border-radius:50%;background:var(--cyan)}
+.v-msg{position:absolute;left:16px;right:16px;bottom:16px;padding:12px 14px;border-radius:10px;background:rgba(14,17,20,.75);font-size:.86rem;color:var(--dark-ink);display:none}
+.viewer.msg .v-msg{display:block}.viewer.msg .v-open{display:none}
+.v-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.seg{display:inline-flex;padding:3px;border-radius:999px;background:var(--bg-2)}
+.seg button{border:0;background:none;padding:7px 14px;border-radius:999px;cursor:pointer;font-size:.84rem;color:var(--mute)}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.seg button:disabled{cursor:default;opacity:.55}
+.v-hint{font-size:.78rem;color:var(--mute)}
+.hs{width:28px;height:28px;border-radius:50%;border:1px solid var(--cyan);background:rgba(14,17,20,.75);color:var(--cyan);font-family:var(--mono);font-size:.7rem;cursor:pointer;display:none}
+.viewer.exploded .hs{display:block}
+.hs.cur{background:var(--cyan);color:#0e1114}
+.v-note{margin-top:12px;min-height:3.2em;font-size:.9rem;color:var(--ink-2)}
+.v-note b{font-weight:500;color:var(--ink)}
+ol.steps{list-style:none;counter-reset:s}
+ol.steps li{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:0 0 26px;counter-increment:s}
+ol.steps li+li{padding-top:26px;border-top:1px solid var(--line)}
+ol.steps li::before{content:"0" counter(s);font-family:var(--mono);font-size:.76rem;color:var(--accent);padding-top:.3em}
+ol.steps h3{font-size:1.15rem;line-height:1.3;margin-bottom:6px}
+ol.steps p{color:var(--ink-2);font-size:.95rem}
+.inset{display:grid;grid-template-columns:132px 1fr;gap:18px;align-items:center;margin-top:8px;padding:14px;border-radius:var(--r);background:var(--bg)}
+.inset img{width:132px;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:8px}
+.inset p{font-size:.86rem;color:var(--mute)}
+@media(max-width:900px){.how-grid{grid-template-columns:1fr}}
+
+/* tables */
+.spec-wrap{max-width:900px}
+table.spec{width:100%;border-collapse:collapse}
+.spec th,.spec td{text-align:left;vertical-align:top;padding:16px 0;border-bottom:1px solid var(--line);font-weight:400}
+.spec tr:first-child th,.spec tr:first-child td{border-top:1px solid var(--line)}
+.spec th{width:34%;color:var(--mute);font-size:.92rem;padding-right:24px}
+.spec td{font-size:.95rem}
+.spec td small{display:block;color:var(--mute);font-size:.82rem;margin-top:3px}
+.note{margin-top:20px;font-size:.84rem;color:var(--mute);max-width:72ch}
+.cmp{width:100%;border-collapse:collapse;min-width:760px}
+.cmp th,.cmp td{padding:15px 18px 15px 0;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-weight:400;font-size:.92rem}
+.cmp thead th{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mute)}
+.cmp td:first-child{color:var(--mute)}
+.cmp .us{color:var(--accent);font-weight:500}
+.scroll{overflow-x:auto}
+
+/* market */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.three>div{background:var(--card);border-radius:var(--r);padding:24px}
+.three h3{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);font-weight:400;margin-bottom:10px}
+.three ul{list-style:none}
+.three li{padding:10px 0;font-size:.95rem;color:var(--ink-2)}
+.three li+li{border-top:1px solid var(--line)}
+@media(max-width:900px){.three{grid-template-columns:1fr}}
+
+/* gallery: justified rows */
+.gal{display:flex;flex-direction:column;gap:12px}
+.gal .r{display:flex;gap:12px}
+.gal figure{margin:0;min-width:0}
+.gal img{width:100%;height:auto;border-radius:10px;cursor:zoom-in;background:var(--bg-2)}
+.gal figcaption{font-size:.76rem}
+
+/* journey */
+.logos{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:clamp(40px,5vw,64px)}
+.logos li{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding:22px 10px 16px;border-radius:var(--r);background:var(--card);text-align:center}
+.logos img{height:54px;width:auto;max-width:100%;object-fit:contain;filter:grayscale(1);opacity:.75;transition:filter .3s,opacity .3s}
+.logos img.wide{height:38px;margin-bottom:8px}
+.logos li:hover img{filter:none;opacity:1}
+.logos span{font-family:var(--mono);font-size:.64rem;letter-spacing:.03em;text-transform:uppercase;color:var(--mute);line-height:1.4}
+@media(max-width:900px){.logos{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:480px){.logos{grid-template-columns:repeat(2,1fr)}}
+.row{display:grid;grid-template-columns:3fr 7fr 2fr;gap:24px;padding:26px 0;border-top:1px solid var(--line)}
+.row time{font-family:var(--mono);font-size:.76rem;color:var(--mute);padding-top:.35em}
+.row h3{font-size:1.2rem;line-height:1.3;margin-bottom:6px}
+.row p{color:var(--ink-2);max-width:60ch;font-size:.95rem}
+.row .res{font-family:var(--mono);font-size:.74rem;padding-top:.35em;color:var(--accent);text-align:right}
+.strip{grid-column:2/4;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.strip img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:8px;cursor:zoom-in}
+@media(max-width:760px){.row{grid-template-columns:1fr;gap:6px}.row .res{text-align:left}.strip{grid-column:1;grid-template-columns:1fr 1fr}}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.5vw,32px)}
+.team img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:var(--r);filter:grayscale(1);transition:filter .4s}
+.team article:hover img{filter:none}
+.team h3{font-size:1.2rem;margin-top:16px}
+.team .lbl{display:block;margin:4px 0 8px}
+.team p{font-size:.92rem;color:var(--ink-2)}
+@media(max-width:900px){.team{grid-template-columns:1fr;max-width:420px}}
+
+/* contact */
+.contact h2{font-size:clamp(2rem,4.4vw,3.6rem);line-height:1.08;max-width:18ch;margin:18px 0 20px}
+html[lang=hy] .contact h2{font-size:clamp(1.7rem,3.4vw,2.7rem);line-height:1.2}
+.contact .lead{color:var(--dark-mute);max-width:56ch}
+.mail{display:inline-block;margin-top:40px;font-size:clamp(1.3rem,3.6vw,2.6rem);font-weight:400;letter-spacing:-.02em;text-decoration:none;border-bottom:1px solid #4a5058;padding-bottom:4px;word-break:break-all}
+.mail:hover{border-color:var(--cyan)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;border-top:1px solid var(--dark-line);padding-top:24px}
+.contact .lbl{color:var(--dark-mute)}
+.cgrid b{display:block;font-weight:400;margin-top:6px}
+.cgrid a{text-decoration:none}
+@media(max-width:760px){.cgrid{grid-template-columns:1fr}}
+footer{background:var(--dark);color:var(--dark-mute);border-top:1px solid var(--dark-line);padding:24px 0;font-size:.8rem}
+footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+.lb{position:fixed;inset:0;background:rgba(14,17,20,.94);display:none;place-items:center;padding:24px;z-index:50;cursor:zoom-out;border:0;width:100%}
+.lb.on{display:grid}.lb img{max-height:90vh;max-width:100%;border-radius:8px}
+</style>
+</head>
+<body>
+
+<header><div class="w">
+  <a class="mark" href="#top"><img src="img/logo-icon-sm.png" width="25" height="30" alt="">AQUILO</a>
+  <nav>
+    <a href="#film" data-t="n0"></a><a href="#problem" data-t="n1"></a><a href="#how" data-t="n2"></a><a href="#spec" data-t="n3"></a><a href="#journey" data-t="n4"></a><a href="#team" data-t="n5"></a><a href="#contact" data-t="n6"></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="hy">ՀՅ</button></div>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="w">
+  <div class="hero-grid">
+    <div>
+      <div class="tag" data-t="h0"></div>
+      <h1 data-t="h1"></h1>
+      <p class="lede" data-t="h2"></p>
+      <div class="cta">
+        <a class="btn pri" href="#film"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg><span data-t="hb1"></span></a>
+        <a class="btn sec" href="#contact" data-t="hb2"></a>
+      </div>
+      <div class="now"><i></i><span data-t="hnow"></span></div>
+    </div>
+    <figure>
+      <picture><source type="image/webp" srcset="media/hero.webp"><img src="media/hero.jpg" width="1280" height="720" alt="Render of the Aquilo station" fetchpriority="high"></picture>
+      <figcaption data-t="hcap"></figcaption>
+    </figure>
+  </div>
+  <div class="facts">
+    <div><b>7 m</b><span data-t="f1"></span></div>
+    <div><b>PM2.5 · PM10</b><span data-t="f2"></span></div>
+    <div><b>30–45k m³/h</b><span data-t="f3"></span></div>
+    <div><b data-t="f4b"></b><span data-t="f4"></span></div>
+  </div>
+</div></div>
+
+<section class="dk film" id="film"><div class="w">
+  <div class="sh"><div class="tag" data-t="v0"></div><h2 data-t="v1"></h2><p data-t="v2"></p></div>
+  <div class="player" id="player">
+    <video id="vid" muted playsinline preload="none" poster="media/station_poster.jpg" width="1600" height="900"></video>
+    <picture><source type="image/webp" srcset="media/station_poster.webp"><img class="pimg" src="media/station_poster.jpg" width="1600" height="900" alt="" loading="lazy"></picture>
+    <button class="play" id="play" type="button"><span><i></i><em data-t="vplay" style="font-style:normal"></em></span></button>
+  </div>
+  <div class="chaps" id="chaps" role="group"></div>
+</div></section>
+
+<section id="problem"><div class="w">
+  <div class="sh"><div class="tag">01 — <span data-t="p0"></span></div><h2 data-t="p1"></h2></div>
+  <div class="prob">
+    <p class="quote" data-t="pq"></p>
+    <div class="prose"><p data-t="p2"></p><p data-t="p3"></p></div>
+  </div>
+  <div class="figs">
+    <div><b>6.5–7M</b><p data-t="pf1"></p></div>
+    <div><b>~30×</b><p data-t="pf2"></p></div>
+    <div><b data-t="pf3b"></b><p data-t="pf3"></p></div>
+  </div>
+  <p class="lbl src" data-t="psrc"></p>
+</div></section>
+
+<section class="alt" id="how"><div class="w">
+  <div class="sh"><div class="tag">02 — <span data-t="w0"></span></div><h2 data-t="w1"></h2></div>
+  <div class="how-grid">
+    <div>
+      <div class="viewer" id="viewer">
+        <picture><source type="image/webp" srcset="media/station_web_poster.webp"><img src="media/station_web_poster.jpg" width="1280" height="720" alt="Cut-away render of the station: fan, central wire and collector mesh" loading="lazy"></picture>
+        <button class="v-open" id="v-open" type="button"><i></i><span data-t="d0"></span></button>
+        <div class="v-msg" id="v-msg" role="status"></div>
+      </div>
+      <div class="v-bar">
+        <div class="seg" role="group"><button type="button" id="v-asm" class="on" disabled data-t="d1"></button><button type="button" id="v-exp" disabled data-t="d2"></button></div>
+        <span class="v-hint" data-t="d3"></span>
+      </div>
+      <p class="v-note" id="v-note" aria-live="polite"></p>
+    </div>
+    <div>
+      <ol class="steps">
+        <li><div><h3 data-t="s1h"></h3><p data-t="s1p"></p></div></li>
+        <li><div><h3 data-t="s2h"></h3><p data-t="s2p"></p></div></li>
+        <li><div><h3 data-t="s3h"></h3><p data-t="s3p"></p></div></li>
+        <li><div><h3 data-t="s4h"></h3><p data-t="s4p"></p></div></li>
+      </ol>
+      <div class="inset"><picture><source type="image/webp" srcset="media/carbon_cap.webp"><img src="media/carbon_cap.jpg" width="800" height="450" alt="Activated-carbon cap at the outlet" loading="lazy"></picture><p data-t="wins"></p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="spec"><div class="w">
+  <div class="sh"><div class="tag">03 — <span data-t="t0"></span></div><h2 data-t="t1"></h2></div>
+  <div class="spec-wrap">
+    <table class="spec"><tbody id="spec-rows"></tbody></table>
+    <p class="note" data-t="tnote"></p>
+  </div>
+</div></section>
+
+<section style="padding-top:0" id="compare"><div class="w">
+  <div class="sh"><div class="tag">04 — <span data-t="c0"></span></div><h2 data-t="c1"></h2></div>
+  <div class="scroll"><table class="cmp"><thead><tr><th></th><th data-t="ch1"></th><th data-t="ch2"></th><th data-t="ch3"></th><th class="us">Aquilo</th></tr></thead><tbody id="cmp-rows"></tbody></table></div>
+  <p class="note" data-t="cnote"></p>
+</div></section>
+
+<section class="alt" id="market" style="background:var(--bg-2)"><div class="w">
+  <div class="sh"><div class="tag">05 — <span data-t="m0"></span></div><h2 data-t="m1"></h2></div>
+  <div class="three">
+    <div><h3 data-t="mh1"></h3><ul id="m-who"></ul></div>
+    <div><h3 data-t="mh2"></h3><ul id="m-rev"></ul></div>
+    <div><h3 data-t="mh3"></h3><ul id="m-road"></ul></div>
+  </div>
+</div></section>
+
+<section id="workshop"><div class="w">
+  <div class="sh"><div class="tag">06 — <span data-t="g0"></span></div><h2 data-t="g1"></h2></div>
+  <div class="gal">
+    <div class="r">
+      <figure style="flex:0.838"><picture><source type="image/webp" srcset="img/interior.webp"><img src="img/interior.jpg" width="1211" height="1445" alt="Working prototype, opened" loading="lazy"></picture><figcaption data-t="wcap"></figcaption></figure>
+      <figure style="flex:0.532"><picture><source type="image/webp" srcset="img/model.webp"><img src="img/model.jpg" width="545" height="1024" alt="3D-printed scale model of the station" loading="lazy"></picture><figcaption data-t="gc1"></figcaption></figure>
+      <figure style="flex:0.503"><picture><source type="image/webp" srcset="img/expo.webp"><img src="img/expo.jpg" width="590" height="1172" alt="The team with the scale model" loading="lazy"></picture><figcaption data-t="gc2"></figcaption></figure>
+    </div>
+    <div class="r">
+      <figure style="flex:1.519"><picture><source type="image/webp" srcset="img/build4.webp"><img src="img/build4.jpg" width="1179" height="776" alt="Assembling the electronics" loading="lazy"></picture><figcaption data-t="gc3"></figcaption></figure>
+      <figure style="flex:0.675"><picture><source type="image/webp" srcset="img/build1.webp"><img src="img/build1.jpg" width="590" height="874" alt="Testing the prototype" loading="lazy"></picture><figcaption data-t="gc4"></figcaption></figure>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0" id="journey"><div class="w">
+  <div class="sh"><div class="tag">07 — <span data-t="j0"></span></div><h2 data-t="j1"></h2></div>
+  <ul class="logos" aria-label="Programmes and competitions">
+    <li><img src="img/partners/npua.png" alt="National Polytechnic University of Armenia" loading="lazy"><span>NPUA</span></li>
+    <li><img src="img/partners/liss24.png" alt="LISS24 Erasmus+ project" loading="lazy"><span>Erasmus+ LISS24</span></li>
+    <li><img src="img/partners/gtu.svg" alt="Georgian Technical University" loading="lazy"><span data-t="lg3"></span></li>
+    <li><img src="img/partners/sia.svg" alt="Social Impact Award" loading="lazy"><span>Social Impact Award</span></li>
+    <li><img src="img/partners/seaside.svg" alt="Seaside Startup Summit Armenia" loading="lazy"><span>Seaside Startup Summit</span></li>
+    <li><img src="img/partners/green-tech-academy.svg" alt="Green Tech Academy by UATE" class="wide" loading="lazy"><span>Green Tech Academy</span></li>
+  </ul>
+  <div id="tl"></div>
+</div></section>
+
+<section class="alt" id="team"><div class="w">
+  <div class="sh"><div class="tag">08 — <span data-t="e0"></span></div><h2 data-t="e1"></h2></div>
+  <div class="team">
+    <article><picture><source type="image/webp" srcset="img/p-levon.webp"><img src="img/p-levon.jpg" width="1016" height="1014" alt="Levon Soghomonyan" loading="lazy"></picture><h3 data-t="e1n"></h3><span class="lbl" data-t="e1r"></span><p data-t="e1p"></p></article>
+    <article><picture><source type="image/webp" srcset="img/p-mariam.webp"><img src="img/p-mariam.jpg" width="520" height="693" alt="Mariam Ghambaryan" loading="lazy"></picture><h3 data-t="e2n"></h3><span class="lbl" data-t="e2r"></span><p data-t="e2p"></p></article>
+    <article><picture><source type="image/webp" srcset="img/p-arayik.webp"><img src="img/p-arayik.jpg" width="1100" height="1020" alt="Arayik Karapetyan" loading="lazy"></picture><h3 data-t="e3n"></h3><span class="lbl" data-t="e3r"></span><p data-t="e3p"></p></article>
+  </div>
+</div></section>
+
+<section class="dk contact" id="contact"><div class="w">
+  <div class="tag">09 — <span data-t="x0"></span></div>
+  <h2 data-t="x1"></h2>
+  <p class="lead" data-t="x2"></p>
+  <a class="mail" href="mailto:lsoghomonyan1@gmail.com">lsoghomonyan1@gmail.com</a>
+  <div class="cgrid">
+    <div><span class="lbl" data-t="x3"></span><b><a href="tel:+37441022710">+374 41 022 710</a></b></div>
+    <div><span class="lbl" data-t="x4"></span><b data-t="x4v"></b></div>
+    <div><span class="lbl" data-t="x5"></span><b data-t="x5v"></b></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="w"><span>© 2026 Aquilo LLC</span><span data-t="ft"></span></div></footer>
+<button class="lb" id="lb" type="button" aria-label="Close"><img alt=""></button>
+
+<script>
+/* Video files, made with tools/make_video.sh from the final render.
+   en uses the label-free cut until an English-label version exists. */
+const VIDEO={
+  hy:{hd:"media/station_hy_1080.mp4",sd:"media/station_hy_720.mp4"},
+  en:{hd:"media/station_raw_1080.mp4",sd:"media/station_raw_720.mp4"}
+};
+const CHAPTERS=[22,30,38,46,53,68,76];
+const GLB="media/station_web.glb";
+const MV_SRC="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js";
+/* Hotspot positions in model units (metres). Placeholders: adjust once station_web.glb exists. */
+const HOTSPOTS=["1.3m 3.5m 0m","0m 0.6m 0.9m","-0.9m 2.6m 0.4m","0m 4.2m 0.2m","0.3m 5.6m 0m","0m 7m 0m"];
+
+const T={
+en:{
+n0:"Station",n1:"Problem",n2:"How it works",n3:"Specification",n4:"Journey",n5:"Team",n6:"Contact",
+h0:"Ionization air purification · Yerevan",
+h1:"Outdoor air, cleaned at street level.",
+h2:"Aquilo is a seven-metre station that removes fine dust from open air using high-voltage ionization and a reusable metal collector. It is being developed by a three-person team from the National Polytechnic University of Armenia.",
+hb1:"Watch the station",hb2:"Get in touch",
+hcap:"Render of the full-size station. Design height about 7 m.",
+hnow:"Now: Green Tech Academy incubation programme by UATE, autumn 2026",
+v0:"Aquilo · 3D",v1:"The station, part by part",v2:"A 100-second render: each component of the station on its own, then the full assembly.",vplay:"Play video",
+ch:["Concrete body","Fan","Zinc-coated net","Tungsten wire","Wire-centring holder","Activated-carbon cap","Assembly"],
+d0:"Explore in 3D",d1:"Assembled",d2:"Exploded",d3:"Drag to rotate · tap a number to read about the part",
+dload:"Loading the 3D model…",dmiss:"The interactive 3D model is still being prepared. In the meantime, the video above shows every part.",
+hs:[["Concrete body","Hourglass shell, about 7 m tall. The narrow waist keeps the airflow turbulent."],["Fan","Industrial fan at the base. It draws polluted air in and pushes it upward."],["Zinc-coated net","Negatively charged mesh on the inner wall. Charged dust stays on it until the mesh is cleaned."],["Tungsten wire","Bare wire on the central axis at high positive voltage. It charges the particles passing by."],["Wire-centring holder","A tube and a ladder of discs that keep the wire exactly on the axis."],["Activated-carbon cap","Outlet layer that removes residual charge and ozone and absorbs harmful gases."]],
+lg3:"Georgian Technical University",
+pq:"Every day, people in big cities breathe air filled with fine dust from traffic and industry — and nobody cleans the air outdoors.",
+f1:"Station height",f2:"Particle classes targeted",f3:"Design airflow",f4b:"Solar + grid",f4:"Power supply",
+p0:"The problem",p1:"Most air purifiers are built for rooms. Pollution happens outside.",
+p2:"Fine particulate matter — PM2.5 and PM10 — comes from traffic, industry, construction, heating and waste burning. In Yerevan and in Armenia’s industrial zones its concentration regularly exceeds World Health Organization guideline values.",
+p3:"Particles this small pass through the nose and reach the lungs and bloodstream. Yet almost every purifier on the market is designed for indoor spaces, and the few outdoor towers that exist are experimental and expensive.",
+pf1:"premature deaths each year are linked to air pollution worldwide.",pf2:"PM2.5 particles are roughly thirty times thinner than a human hair.",pf3b:"$200k+",pf3:"typical cost of existing outdoor purification towers, according to our market research.",
+psrc:"Sources: WHO; Government of Armenia decision N1142 (14 Aug 2025); team research.",
+w0:"How it works",w1:"Four stages, no disposable filter cloth.",
+wcap:"Working prototype, opened. Visible: intake fan at the base, the central high-voltage wire and the collector mesh.",
+s1h:"Intake",s1p:"An industrial fan at the base draws polluted air in and pushes it upward. The body narrows towards the middle, which keeps the flow turbulent so that particles collide more often.",
+s2h:"Ionization",s2p:"A bare tungsten wire held at high positive voltage runs along the central axis. Dust particles and air molecules passing it become positively charged.",
+s3h:"Collection",s3p:"The inner wall is lined with a negatively charged, zinc-coated (galvanised) steel mesh. Charged particles are pulled onto it and stay there until the mesh is cleaned — nothing is thrown away.",
+s4h:"Outlet treatment",s4p:"Before leaving through the top, air passes an activated-carbon layer that removes residual charge and ozone and absorbs additional harmful gases.",
+wins:"The activated-carbon cap at the outlet. It acts as a safety stage rather than the main filter, so it lasts considerably longer.",
+t0:"Specification",t1:"What the full-size station is designed to do.",
+tnote:"All performance values are design targets for the full-size station and have not yet been verified in field tests. Laboratory and field testing are part of the current development plan.",
+spec:[["Height","~7 m","Hourglass profile, modular sections"],["Diameter","2.4 m waist · 3 m top",""],["Airflow","30,000–45,000 m³/h","≈ 1,000,000 m³ of air per day"],["Dust removed","0.5–1.5 kg/day","Depends on local pollution level"],["Cleaning principle","High-voltage ionization + electrostatic collection","Activated carbon at the outlet"],["Sensors","PM2.5/PM10 (laser), O₃ (electrochemical), MQ-135, MICS-6814, BME-280","Dust, ozone, NH₃, NOx, CO, VOCs, temperature, humidity, pressure"],["Controller","NUCLEO-WL55JC2","Low-power wireless (LoRa) link between stations and a server"],["Power","Solar panels + grid","Goal: energy self-sufficiency"],["Safety","Automatic shutdown","Cuts power within milliseconds on a short circuit"],["Target cost","≈ $20,000 per station",""]],
+c0:"Comparison",c1:"How Aquilo differs from existing approaches.",
+ch1:"Indoor HEPA purifiers",ch2:"Smog Free Tower (NL/CN)",ch3:"Xi’an solar tower (CN)",
+cmp:[["Environment","Indoors","Outdoors, small area","Outdoors, very large structure","Outdoors, street level"],["Consumables","Filters replaced regularly","Ionization, low waste","Filters require replacement","Reusable mesh; long-life carbon layer"],["Energy","Mains","Mains","Sunlight / greenhouse effect","Solar + grid"],["Monitoring","Rare","Limited","None","Networked real-time sensors"],["Cost","Low per unit","≈ $300,000","Very high","Target ≈ $20,000"]],
+cnote:"Based on publicly available descriptions and our own research. Figures for other projects are approximate.",
+m0:"Market",m1:"Who it is for, and how it pays for itself.",
+mh1:"Customers",mh2:"Revenue",mh3:"Roadmap",
+who:["Mining companies and quarries","Municipalities — parks, squares, schools","Construction sites","Industrial plants","Resorts, restaurants and commercial centres"],
+rev:["Sale of stations (B2B and B2G)","Monthly maintenance contracts","Remote monitoring and reporting","Later: advertising space, online platform"],
+road:["1 · Choose and validate the first customer group","2 · Fully working prototype (MVP), lab and field tests","3 · Pilot station with a first customer","4 · Investment, then sales in Armenia and the region"],
+g0:"Workshop",g1:"Built by hand, tested in the lab.",
+gc1:"3D-printed scale model.",gc2:"The team with the scale model.",gc3:"Assembling the electronics.",gc4:"Testing the prototype.",
+j0:"Journey",j1:"2026 so far.",
+tl:[["April 2026","NPUA Innovative Business Ideas competition","Aquilo was presented at the National Polytechnic University of Armenia, within the EU Erasmus+ LISS24 project.","2nd place",["npua1"]],
+["18–20 May 2026","International round, Tbilisi","The team represented NPUA at the international stage of the competition, hosted by the Georgian Technical University.","Represented NPUA",["tb2","tb4"]],
+["May 2026","High-tech “Idea Phase” grant","Application with a six-month plan: build a working prototype, run lab and field tests, prepare production documentation.","Applied",[]],
+["June 2026","Hackathon","Finished fifth, close behind fourth, with a limited budget.","5th place",[]],
+["June 2026","Social Impact Award Armenia","Selected for the SIA incubation programme as one of ten teams from several dozen applicants.","Selected",[]],
+["25 Jul – 1 Aug 2026","Seaside Startup Summit Armenia, Lake Sevan","A week of mentoring sessions, workshops and pitching in the Starter programme.","Participant",["ss2","ss1","ss4"]],
+["September 2026","Hayart centre","The prototype was installed at the Hayart centre and presented to a jury.","Exhibited",[]],
+["Oct 2026 – now","Green Tech Academy by UATE","Accepted after an interview into Armenia’s first incubation programme for renewable-energy and energy-efficiency startups. Twelve weeks of customer discovery, market validation and MVP testing, with mentors, internal demo days and a public Demo Day.","In progress",[]]],
+e0:"Team",e1:"Three engineering students from NPUA.",
+e1n:"Levon Soghomonyan",e1r:"Founder, Director · Nuclear energy",e1p:"Leads the company, grant applications and pitches. Responsible for overall engineering direction and thermodynamics.",
+e2n:"Mariam Ghambaryan",e2r:"Electrical power engineering",e2p:"Works on the electrical side of the station: power supply, high-voltage circuit and energy use.",
+e3n:"Arayik Karapetyan",e3r:"AI systems · Electronics",e3p:"Works on sensors, data and software: monitoring, the controller and coordination between stations.",
+x0:"Contact",x1:"Talk to us about a pilot.",x2:"We are looking for municipal and industrial partners, mentors and investors. We answer every message ourselves.",
+x3:"Phone",x4:"Location",x4v:"Yerevan, Armenia",x5:"Company",x5v:"Aquilo LLC",
+ft:"Prototype-stage project · Information site"},
+hy:{
+n0:"Կայանը",n1:"Խնդիրը",n2:"Ինչպես է աշխատում",n3:"Բնութագիր",n4:"Ճանապարհը",n5:"Թիմը",n6:"Կապ",
+h0:"Իոնիզացիոն օդամաքրում · Երևան",
+h1:"Բացօթյա օդի մաքրում՝ փողոցի մակարդակում։",
+h2:"Aquilo-ն մոտ յոթ մետր բարձրությամբ կայան է, որը բաց օդից հեռացնում է մանր փոշին՝ բարձրավոլտ իոնիզացիայի և բազմակի օգտագործման մետաղական հավաքիչի միջոցով։ Այն մշակում է Հայաստանի ազգային պոլիտեխնիկական համալսարանի եռանդամ թիմը։",
+hb1:"Դիտել կայանը",hb2:"Կապվել մեզ հետ",
+hcap:"Լիաչափ կայանի 3D պատկեր։ Նախագծային բարձրությունը՝ մոտ 7 մ։",
+hnow:"Այժմ՝ UATE-ի Green Tech Academy ինկուբացիոն ծրագիր, 2026թ. աշուն",
+v0:"Aquilo · 3D",v1:"Կայանը՝ մաս առ մաս",v2:"Մոտ 100 վայրկյան տևողությամբ 3D տեսանյութ՝ կայանի բաղադրիչները մեկ առ մեկ, ապա ամբողջական հավաքումը։",vplay:"Դիտել տեսանյութը",
+ch:["Բետոնե կորպուս","Օդափոխիչ","Ցինկապատ ցանց","Վոլֆրամե լար","Լարի կենտրոնացնող հենարան","Ակտիվացված ածխի ծածկ","Հավաքում"],
+d0:"Դիտել 3D-ով",d1:"Հավաքված",d2:"Բաց",d3:"Պտտեք մկնիկով կամ մատով · սեղմեք համարի վրա՝ մասի մասին կարդալու համար",
+dload:"3D մոդելը բեռնվում է…",dmiss:"Ինտերակտիվ 3D մոդելը դեռ պատրաստվում է։ Մինչ այդ վերևի տեսանյութը ցույց է տալիս բոլոր մասերը։",
+hs:[["Բետոնե կորպուս","Ավազի ժամացույցի ձևով պատյան՝ մոտ 7 մ բարձրությամբ։ Նեղ մեջտեղը օդահոսքը պահում է տուրբուլենտ։"],["Օդափոխիչ","Ներքևի արդյունաբերական օդափոխիչը ներս է քաշում աղտոտված օդը և մղում վերև։"],["Ցինկապատ ցանց","Ներսի պատի բացասական լիցքավորված ցանցը։ Լիցքավորված փոշին մնում է դրա վրա մինչև ցանցի մաքրումը։"],["Վոլֆրամե լար","Կենտրոնական առանցքի չմեկուսացված լարը՝ բարձր դրական լարման տակ։ Այն լիցքավորում է կողքով անցնող մասնիկները։"],["Լարի կենտրոնացնող հենարան","Խողովակ և սկավառակների շարք, որոնք լարը պահում են ճիշտ առանցքի վրա։"],["Ակտիվացված ածխի ծածկ","Ելքի շերտ, որը հեռացնում է մնացորդային լիցքն ու օզոնը և կլանում վնասակար գազերը։"]],
+lg3:"Վրաստանի տեխնիկական համալսարան",
+pq:"Մեծ քաղաքներում մարդիկ ամեն օր աղտոտված օդ են շնչում. մեքենաներն ու գործարանները օդը լցնում են մանր փոշիով, իսկ բացօթյա օդը ոչ ոք չի մաքրում։",
+f1:"Կայանի բարձրություն",f2:"Թիրախային մասնիկներ",f3:"Նախագծային օդահոսք",f4b:"Արև + էլեկտրացանց",f4:"Էլեկտրասնուցում",
+p0:"Խնդիրը",p1:"Օդամաքրիչների մեծ մասը սենյակների համար է։ Աղտոտվածությունը դրսում է։",
+p2:"PM2.5 և PM10 մանր մասնիկների աղբյուրներն են տրանսպորտը, արդյունաբերությունը, շինարարությունը, ջեռուցումը և աղբի այրումը։ Երևանում և Հայաստանի արդյունաբերական գոտիներում դրանց կոնցենտրացիան պարբերաբար գերազանցում է Առողջապահության համաշխարհային կազմակերպության ուղեցուցային արժեքները։",
+p3:"Այսքան մանր մասնիկներն անցնում են քթով և հասնում թոքերին ու արյանը։ Սակայն շուկայի գրեթե բոլոր օդամաքրիչները նախատեսված են փակ տարածքների համար, իսկ գոյություն ունեցող բացօթյա աշտարակները փորձարարական են և թանկ։",
+pf1:"վաղաժամ մահ ամեն տարի աշխարհում կապված է օդի աղտոտվածության հետ։",pf2:"PM2.5 մասնիկները մոտ երեսուն անգամ բարակ են մարդու մազից։",pf3b:"$200k+",pf3:"գոյություն ունեցող բացօթյա օդամաքրման աշտարակների բնորոշ արժեքը՝ ըստ մեր շուկայի ուսումնասիրության։",
+psrc:"Աղբյուրներ՝ ԱՀԿ, ՀՀ կառավարության 2025թ. օգոստոսի 14-ի N1142 որոշում, թիմի ուսումնասիրություն։",
+w0:"Ինչպես է աշխատում",w1:"Չորս փուլ՝ առանց փոխարինվող ֆիլտրերի։",
+wcap:"Գործող նախատիպը՝ բաց վիճակում։ Երևում են ներքևի օդափոխիչը, կենտրոնական բարձրավոլտ լարը և հավաքող ցանցը։",
+s1h:"Ներծծում",s1p:"Ներքևի արդյունաբերական օդափոխիչը ներս է քաշում աղտոտված օդը և մղում վերև։ Կորպուսը մեջտեղում նեղանում է, ինչի շնորհիվ հոսքը մնում է տուրբուլենտ, և մասնիկներն ավելի հաճախ են բախվում։",
+s2h:"Իոնիզացիա",s2p:"Կենտրոնական առանցքով ձգվում է բարձր դրական լարման տակ գտնվող չմեկուսացված վոլֆրամե լար։ Կողքով անցնող փոշու մասնիկներն ու օդի մոլեկուլները ստանում են դրական լիցք։",
+s3h:"Հավաքում",s3p:"Ներսի պատը պատված է բացասական լիցքավորված ցինկապատ պողպատե ցանցով։ Լիցքավորված մասնիկները ձգվում են դեպի այն և մնում են դրա վրա մինչև ցանցի մաքրումը։ Ոչինչ դեն չի նետվում։",
+s4h:"Ելքի մշակում",s4p:"Վերևից դուրս գալուց առաջ օդն անցնում է ակտիվացված ածխի շերտով, որը հեռացնում է մնացորդային լիցքն ու օզոնը և կլանում լրացուցիչ վնասակար գազեր։",
+wins:"Ելքի ակտիվացված ածխի ծածկը։ Այն անվտանգության փուլ է, ոչ թե հիմնական ֆիլտր, ուստի զգալիորեն ավելի երկար է ծառայում։",
+t0:"Բնութագիր",t1:"Լիաչափ կայանի նախագծային ցուցանիշները։",
+tnote:"Արդյունավետության բոլոր արժեքները լիաչափ կայանի նախագծային թիրախներ են և դեռ չեն ստուգվել դաշտային փորձարկումներում։ Լաբորատոր և դաշտային փորձարկումները ներառված են մշակման ընթացիկ պլանում։",
+spec:[["Բարձրություն","~7 մ","Ավազի ժամացույցի ձև, մոդուլային հատվածներ"],["Տրամագիծ","2.4 մ՝ մեջտեղում · 3 մ՝ վերևում",""],["Օդահոսք","30,000–45,000 մ³/ժ","≈ 1,000,000 մ³ օդ օրական"],["Հեռացվող փոշի","0.5–1.5 կգ/օր","Կախված է տեղի աղտոտվածությունից"],["Մաքրման սկզբունք","Բարձրավոլտ իոնիզացիա + էլեկտրաստատիկ հավաքում","Ակտիվացված ածուխ ելքում"],["Սենսորներ","PM2.5/PM10 (լազերային), O₃ (էլեկտրաքիմիական), MQ-135, MICS-6814, BME-280","Փոշի, օզոն, NH₃, NOx, CO, VOC, ջերմաստիճան, խոնավություն, ճնշում"],["Կառավարիչ","NUCLEO-WL55JC2","Էներգախնայող անլար (LoRa) կապ կայանների և սերվերի միջև"],["Սնուցում","Արևային վահանակներ + էլեկտրացանց","Նպատակը՝ էներգետիկ ինքնաբավություն"],["Անվտանգություն","Ավտոմատ անջատում","Կարճ միացման դեպքում անջատում է միլիվայրկյանների ընթացքում"],["Թիրախային արժեք","≈ $20,000 մեկ կայանի համար",""]],
+c0:"Համեմատություն",c1:"Ինչով է Aquilo-ն տարբերվում գոյություն ունեցող լուծումներից։",
+ch1:"Փակ տարածքի HEPA օդամաքրիչներ",ch2:"Smog Free Tower (Նիդեռլանդներ/Չինաստան)",ch3:"Սիանի արևային աշտարակ (Չինաստան)",
+cmp:[["Միջավայր","Փակ տարածք","Բացօթյա, փոքր տարածք","Բացօթյա, շատ մեծ կառույց","Բացօթյա, փողոցի մակարդակ"],["Ծախսանյութեր","Ֆիլտրերը պարբերաբար փոխվում են","Իոնիզացիա, քիչ թափոն","Ֆիլտրերը պետք է փոխվեն","Բազմակի օգտագործման ցանց, երկարակյաց ածխի շերտ"],["Էներգիա","Էլեկտրացանց","Էլեկտրացանց","Արև / ջերմոցային էֆեկտ","Արև + էլեկտրացանց"],["Մոնիթորինգ","Հազվադեպ","Սահմանափակ","Չկա","Իրական ժամանակում աշխատող, միմյանց կապված սենսորներ"],["Արժեք","Ցածր՝ մեկ սարքի համար","≈ $300,000","Շատ բարձր","Թիրախ ≈ $20,000"]],
+cnote:"Հիմնված է հրապարակային նկարագրությունների և մեր ուսումնասիրության վրա։ Այլ նախագծերի թվերը մոտավոր են։",
+m0:"Շուկա",m1:"Ում համար է և ինչպես է իրեն հատուցում։",
+mh1:"Հաճախորդներ",mh2:"Եկամուտ",mh3:"Զարգացման փուլեր",
+who:["Հանքարդյունաբերական ընկերություններ և քարհանքեր","Համայնքապետարաններ՝ այգիներ, հրապարակներ, դպրոցներ","Շինհրապարակներ","Արդյունաբերական ձեռնարկություններ","Հանգստավայրեր, ռեստորաններ և առևտրի կենտրոններ"],
+rev:["Կայանների վաճառք (B2B և B2G)","Ամսական սպասարկման պայմանագրեր","Հեռակա մոնիթորինգ և հաշվետվություններ","Հետագայում՝ գովազդային տարածք, առցանց հարթակ"],
+road:["1 · Առաջին հաճախորդների խմբի ընտրություն և վավերացում","2 · Լիարժեք աշխատող նախատիպ (MVP), լաբորատոր և դաշտային փորձարկումներ","3 · Փորձնական կայան առաջին հաճախորդի մոտ","4 · Ներդրում, ապա վաճառք Հայաստանում և տարածաշրջանում"],
+g0:"Արհեստանոց",g1:"Ձեռքով հավաքված, լաբորատորիայում փորձարկված։",
+gc1:"3D տպված մասշտաբային մոդել։",gc2:"Թիմը մասշտաբային մոդելի հետ։",gc3:"Էլեկտրոնիկայի հավաքում։",gc4:"Նախատիպի փորձարկում։",
+j0:"Ճանապարհը",j1:"2026 թվականը մինչ այժմ։",
+tl:[["2026թ. ապրիլ","ՀԱՊՀ «Նորարարական բիզնես գաղափարներ» մրցույթ","Aquilo-ն ներկայացվեց Հայաստանի ազգային պոլիտեխնիկական համալսարանում՝ ԵՄ Erasmus+ LISS24 նախագծի շրջանակում։","2-րդ տեղ",["npua1"]],
+["2026թ. մայիսի 18–20","Միջազգային փուլ, Թբիլիսի","Թիմը ներկայացրեց ՀԱՊՀ-ն մրցույթի միջազգային փուլում՝ Վրաստանի տեխնիկական համալսարանում։","Ներկայացրինք ՀԱՊՀ-ն",["tb2","tb4"]],
+["2026թ. մայիս","«Գաղափարի փուլ» դրամաշնորհ","Հայտ՝ վեցամսյա պլանով. գործող նախատիպ, լաբորատոր և դաշտային փորձարկումներ, արտադրական փաստաթղթեր։","Դիմել ենք",[]],
+["2026թ. հունիս","Հաքաթոն","Հինգերորդ տեղ՝ չորրորդից աննշան տարբերությամբ և սահմանափակ բյուջեով։","5-րդ տեղ",[]],
+["2026թ. հունիս","Social Impact Award Armenia","Մի քանի տասնյակ հայտերից ընտրվեցինք SIA ինկուբացիոն ծրագրի տասը թիմերից մեկը։","Ընտրված",[]],
+["2026թ. հուլիսի 25 – օգոստոսի 1","Seaside Startup Summit Armenia, Սևան","Մեկ շաբաթ մենթորական հանդիպումներ, աշխատարաններ և ելույթներ (pitch)՝ Starter ծրագրի շրջանակում։","Մասնակից",["ss2","ss1","ss4"]],
+["2026թ. սեպտեմբեր","«Հայարտ» կենտրոն","Նախատիպը տեղադրվեց «Հայարտ» կենտրոնում և ներկայացվեց ժյուրիին։","Ցուցադրված",[]],
+["2026թ. հոկտեմբերից մինչ այժմ","UATE-ի Green Tech Academy","Հարցազրույցից հետո ընդունվեցինք Հայաստանում վերականգնվող էներգետիկայի և էներգաարդյունավետության ստարտափների առաջին ինկուբացիոն ծրագիր։ Տասներկու շաբաթ՝ հաճախորդների ուսումնասիրություն, շուկայի վավերացում և MVP-ի փորձարկում՝ մենթորներով, ներքին demo day-երով և հրապարակային Demo Day-ով։","Ընթացքում",[]]],
+e0:"Թիմը",e1:"ՀԱՊՀ-ի ճարտարագիտական երեք ուսանող։",
+e1n:"Լևոն Սողոմոնյան",e1r:"Հիմնադիր, տնօրեն · Ատոմային էներգետիկա",e1p:"Ղեկավարում է ընկերությունը, դրամաշնորհային հայտերը և ներկայացումները։ Պատասխանատու է ինժեներական ընդհանուր ուղղության և թերմոդինամիկայի համար։",
+e2n:"Մարիամ Ղամբարյան",e2r:"Էլեկտրաէներգետիկա",e2p:"Աշխատում է կայանի էլեկտրական մասի վրա՝ սնուցում, բարձրավոլտ շղթա և էներգասպառում։",
+e3n:"Արայիկ Կարապետյան",e3r:"AI համակարգեր · Էլեկտրոնիկա",e3p:"Աշխատում է սենսորների, տվյալների և ծրագրային մասի վրա՝ մոնիթորինգ, կառավարիչ և կայանների համակարգում։",
+x0:"Կապ",x1:"Խոսենք փորձնական կայանի մասին։",x2:"Փնտրում ենք համայնքային և արդյունաբերական գործընկերներ, մենթորներ և ներդրողներ։ Յուրաքանչյուր նամակի պատասխանում ենք անձամբ։",
+x3:"Հեռախոս",x4:"Գտնվելու վայր",x4v:"Երևան, Հայաստան",x5:"Ընկերություն",x5v:"Ակվիլո ՍՊԸ",
+ft:"Նախատիպի փուլում գտնվող նախագիծ · Տեղեկատվական կայք"}
+};
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+let lang="en";try{const s=new URLSearchParams(location.search).get("l")||localStorage.getItem("aq-lang");if(s==="en"||s==="hy")lang=s}catch(e){}
+
+/* ---------- video ---------- */
+const vid=$("#vid"),player=$("#player");
+const vsrc=()=>VIDEO[lang][matchMedia("(max-width:800px)").matches?"sd":"hd"];
+function loadVideo(t){
+  const want=vsrc();
+  if(!vid.getAttribute("src")||!vid.src.endsWith(want)){
+    const keep=vid.currentTime||0,wasPlaying=!vid.paused;
+    vid.src=want;vid.load();
+    vid.addEventListener("loadedmetadata",()=>{vid.currentTime=t??keep;if(wasPlaying||t!=null)vid.play().catch(()=>{})},{once:true});
+  }else{if(t!=null)vid.currentTime=t;vid.play().catch(()=>{})}
+}
+function startVideo(t){player.classList.add("on");vid.controls=true;loadVideo(t)}
+$("#play").onclick=()=>startVideo(0);
+vid.addEventListener("timeupdate",()=>{const t=vid.currentTime;let k=-1;CHAPTERS.forEach((c,i)=>{if(t>=c)k=i});$$("#chaps button").forEach((b,i)=>b.classList.toggle("cur",i===k))});
+
+/* ---------- 3D viewer ---------- */
+const viewer=$("#viewer"),vmsg=$("#v-msg"),vnote=$("#v-note");
+let mv=null,hsCur=-1;
+function msg(k){vmsg.textContent=T[lang][k];viewer.classList.add("msg")}
+$("#v-open").onclick=async()=>{
+  msg("dload");
+  let ok=false;try{const r=await fetch(GLB,{method:"HEAD"});ok=r.ok}catch(e){}
+  if(!ok){msg("dmiss");return}
+  if(!customElements.get("model-viewer")){const s=document.createElement("script");s.type="module";s.src=MV_SRC;document.head.appendChild(s)}
+  mv=document.createElement("model-viewer");
+  Object.entries({src:GLB,"camera-controls":"","touch-action":"pan-y","interaction-prompt":"none","animation-name":"explode","shadow-intensity":"0.6","exposure":"0.9","min-camera-orbit":"auto 20deg 60%","max-camera-orbit":"auto 100deg 160%","alt":"Interactive 3D model of the Aquilo station"}).forEach(([k,v])=>mv.setAttribute(k,v));
+  HOTSPOTS.forEach((p,i)=>{const b=document.createElement("button");b.className="hs";b.type="button";b.slot="hotspot-"+(i+1);b.dataset.position=p;b.dataset.normal="0m 1m 0m";b.textContent="0"+(i+1);b.onclick=()=>showHs(i);mv.appendChild(b)});
+  mv.addEventListener("load",()=>{viewer.classList.remove("msg");$("#v-asm").disabled=false;$("#v-exp").disabled=false},{once:true});
+  mv.addEventListener("error",()=>msg("dmiss"),{once:true});
+  viewer.appendChild(mv);
+};
+function setMode(exploded){
+  if(!mv)return;
+  $("#v-asm").classList.toggle("on",!exploded);$("#v-exp").classList.toggle("on",exploded);
+  viewer.classList.toggle("exploded",exploded);
+  const d=mv.duration||0;
+  if(exploded){mv.timeScale=1;if(mv.currentTime>=d)mv.currentTime=0}else{mv.timeScale=-1;if(mv.currentTime<=0)mv.currentTime=d}
+  mv.play({repetitions:1});
+  if(!exploded){hsCur=-1;vnote.textContent="";$$(".hs").forEach(b=>b.classList.remove("cur"))}
+}
+$("#v-asm").onclick=()=>setMode(false);$("#v-exp").onclick=()=>setMode(true);
+function showHs(i){hsCur=i;const h=T[lang].hs[i];vnote.innerHTML=`<b>0${i+1} ${esc(h[0])}.</b> ${esc(h[1])}`;$$(".hs").forEach((b,j)=>b.classList.toggle("cur",j===i))}
+
+/* ---------- render ---------- */
+function pic(f,cls){return `<picture><source type="image/webp" srcset="img/${f}.webp"><img src="img/${f}.jpg" alt="" loading="lazy"${cls?` class="${cls}"`:""}></picture>`}
+function render(){
+  const t=T[lang];document.documentElement.lang=lang;
+  $$("[data-t]").forEach(e=>e.textContent=t[e.dataset.t]??"");
+  $("#spec-rows").innerHTML=t.spec.map(r=>`<tr><th>${esc(r[0])}</th><td>${esc(r[1])}${r[2]?`<small>${esc(r[2])}</small>`:""}</td></tr>`).join("");
+  $("#cmp-rows").innerHTML=t.cmp.map(r=>`<tr>${r.map((c,i)=>`<td${i===4?' class="us"':""}>${esc(c)}</td>`).join("")}</tr>`).join("");
+  [["#m-who","who"],["#m-rev","rev"],["#m-road","road"]].forEach(([s,k])=>$(s).innerHTML=t[k].map(x=>`<li>${esc(x)}</li>`).join(""));
+  $("#tl").innerHTML=t.tl.map(r=>`<div class="row"><time>${esc(r[0])}</time><div><h3>${esc(r[1])}</h3><p>${esc(r[2])}</p></div><div class="res">${esc(r[3])}</div>${r[4].length?`<div class="strip">${r[4].map(f=>pic(f)).join("")}</div>`:""}</div>`).join("");
+  $("#chaps").innerHTML=t.ch.map((c,i)=>`<button type="button" data-i="${i}"><b>${i<6?"0"+(i+1):"→"}</b><span>${esc(c)}</span><time>${fmt(CHAPTERS[i])}</time></button>`).join("");
+  $$("#chaps button").forEach(b=>b.onclick=()=>startVideo(CHAPTERS[+b.dataset.i]));
+  $("#chaps").setAttribute("aria-label",lang==="hy"?"Գլուխներ":"Chapters");
+  if(viewer.classList.contains("msg")&&!mv)msg("dmiss");
+  if(hsCur>=0)showHs(hsCur);
+  if(player.classList.contains("on"))loadVideo();
+  $$(".lang button").forEach(b=>{b.classList.toggle("on",b.dataset.l===lang);b.setAttribute("aria-pressed",b.dataset.l===lang)});
+  bindZoom();
+}
+$$(".lang button").forEach(b=>b.onclick=()=>{lang=b.dataset.l;try{localStorage.setItem("aq-lang",lang)}catch(e){}render()});
+const lb=$("#lb");lb.onclick=()=>lb.classList.remove("on");
+document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("on")});
+function bindZoom(){$$(".gal img,.strip img").forEach(i=>i.onclick=()=>{lb.firstElementChild.src=i.currentSrc||i.src;lb.classList.add("on");lb.focus()})}
+render();
+</script>
+</body>
+</html>
