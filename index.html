@@ -119,12 +119,14 @@ html[lang=hy] .sh h2{font-size:clamp(1.55rem,2.7vw,2.2rem);line-height:1.22}
 html[lang=hy] .quote{font-size:clamp(1.12rem,1.75vw,1.45rem)}
 .prose p{color:var(--ink-2);max-width:62ch}
 .prose p+p{margin-top:1em}
-.figs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(40px,5vw,64px)}
+.figs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(40px,5vw,64px)}
+@media(max-width:1000px){.figs{grid-template-columns:1fr 1fr}}
 .figs div{background:var(--card);border-radius:var(--r);padding:24px}
 .figs b{display:block;font-weight:500;font-size:clamp(1.9rem,3.2vw,2.6rem);line-height:1;letter-spacing:-.03em;margin-bottom:12px;color:var(--navy)}
 .figs p{font-size:.9rem;color:var(--mute)}
 .src{margin-top:20px}
-@media(max-width:860px){.prob{grid-template-columns:1fr}.figs{grid-template-columns:1fr}}
+@media(max-width:860px){.prob{grid-template-columns:1fr}}
+@media(max-width:520px){.figs{grid-template-columns:1fr}}
 
 /* how */
 .how-grid{display:grid;grid-template-columns:7fr 5fr;gap:clamp(32px,5vw,72px);align-items:start}
@@ -158,6 +160,35 @@ ol.steps p{color:var(--ink-2);font-size:.95rem}
 .inset p{font-size:.86rem;color:var(--mute)}
 @media(max-width:900px){.how-grid{grid-template-columns:1fr}}
 
+.res99{margin:4px 0 20px;padding:14px 16px;border-left:2px solid var(--accent);background:var(--bg);border-radius:0 10px 10px 0;font-size:.95rem;color:var(--ink)}
+/* pilot */
+.pilot{display:grid;grid-template-columns:7fr 5fr;gap:clamp(32px,5vw,80px);align-items:start}
+.pilot .prose p{font-size:1.02rem}
+.pilot h3.lbl{font-weight:400;margin-bottom:12px}
+.phases{list-style:none}
+.phases li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line);font-size:.93rem;color:var(--ink-2)}
+html[lang=hy] .phases li{grid-template-columns:1fr;gap:4px}
+.phases time{font-family:var(--mono);font-size:.74rem;color:var(--accent);padding-top:.2em}
+.done{list-style:none}
+.done li{position:relative;padding:10px 0 10px 26px;border-top:1px solid var(--line);font-size:.93rem;color:var(--ink-2)}
+.done li::before{content:"";position:absolute;left:2px;top:17px;width:10px;height:6px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+@media(max-width:900px){.pilot{grid-template-columns:1fr}}
+@media(max-width:480px){.phases li{grid-template-columns:1fr;gap:4px}}
+/* awards */
+.awards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px}
+.awards div{padding:20px 22px;border-radius:var(--r);background:var(--dark);color:var(--dark-ink)}
+.awards b{display:block;font-weight:500;font-size:1.15rem;color:var(--cyan);margin-bottom:6px}
+.awards span{font-size:.9rem;color:var(--dark-mute)}
+@media(max-width:760px){.awards{grid-template-columns:1fr}}
+/* faq */
+.faq{max-width:860px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:18px 0;font-weight:500;font-size:1.02rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--accent);font-weight:400;font-size:1.1rem;line-height:1.4}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 20px;color:var(--ink-2);max-width:70ch}
 /* tables */
 .spec-wrap{max-width:900px}
 table.spec{width:100%;border-collapse:collapse}
@@ -240,7 +271,7 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <header><div class="w">
   <a class="mark" href="#top"><img src="img/logo-icon-sm.png" width="25" height="30" alt="">AQUILO</a>
   <nav>
-    <a href="#film" data-t="n0"></a><a href="#problem" data-t="n1"></a><a href="#how" data-t="n2"></a><a href="#spec" data-t="n3"></a><a href="#journey" data-t="n4"></a><a href="#team" data-t="n5"></a><a href="#contact" data-t="n6"></a>
+    <a href="#problem" data-t="n1"></a><a href="#how" data-t="n2"></a><a href="#pilot" data-t="n3"></a><a href="#journey" data-t="n4"></a><a href="#team" data-t="n5"></a><a href="#faq" data-t="n7"></a><a href="#contact" data-t="n6"></a>
   </nav>
   <div class="lang" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="hy">ՀՅ</button></div>
 </div></header>
@@ -264,9 +295,9 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     </figure>
   </div>
   <div class="facts">
-    <div><b>7 m</b><span data-t="f1"></span></div>
-    <div><b>PM2.5 · PM10</b><span data-t="f2"></span></div>
-    <div><b>30–45k m³/h</b><span data-t="f3"></span></div>
+    <div><b data-t="f1b"></b><span data-t="f1"></span></div>
+    <div><b data-t="f2b"></b><span data-t="f2"></span></div>
+    <div><b data-t="f3b"></b><span data-t="f3"></span></div>
     <div><b data-t="f4b"></b><span data-t="f4"></span></div>
   </div>
 </div></div>
@@ -285,12 +316,13 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="sh"><div class="tag">01 — <span data-t="p0"></span></div><h2 data-t="p1"></h2></div>
   <div class="prob">
     <p class="quote" data-t="pq"></p>
-    <div class="prose"><p data-t="p2"></p><p data-t="p3"></p></div>
+    <div class="prose"><p data-t="p2"></p><p data-t="p3"></p><p data-t="p4"></p><p data-t="p5"></p></div>
   </div>
   <div class="figs">
-    <div><b>6.5–7M</b><p data-t="pf1"></p></div>
-    <div><b>~30×</b><p data-t="pf2"></p></div>
+    <div><b data-t="pf1b"></b><p data-t="pf1"></p></div>
+    <div><b data-t="pf2b"></b><p data-t="pf2"></p></div>
     <div><b data-t="pf3b"></b><p data-t="pf3"></p></div>
+    <div><b data-t="pf4b"></b><p data-t="pf4"></p></div>
   </div>
   <p class="lbl src" data-t="psrc"></p>
 </div></section>
@@ -317,13 +349,27 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <li><div><h3 data-t="s3h"></h3><p data-t="s3p"></p></div></li>
         <li><div><h3 data-t="s4h"></h3><p data-t="s4p"></p></div></li>
       </ol>
+      <p class="res99" data-t="wres"></p>
       <div class="inset"><picture><source type="image/webp" srcset="media/carbon_cap.webp"><img src="media/carbon_cap.jpg" width="800" height="450" alt="Activated-carbon cap at the outlet" loading="lazy"></picture><p data-t="wins"></p></div>
     </div>
   </div>
 </div></section>
 
-<section id="spec"><div class="w">
-  <div class="sh"><div class="tag">03 — <span data-t="t0"></span></div><h2 data-t="t1"></h2></div>
+<section id="pilot"><div class="w">
+  <div class="sh"><div class="tag">03 — <span data-t="k0"></span></div><h2 data-t="k1"></h2></div>
+  <div class="pilot">
+    <div class="prose"><p data-t="k2"></p><p data-t="k3"></p></div>
+    <div>
+      <h3 class="lbl" data-t="kp"></h3>
+      <ol class="phases" id="phases"></ol>
+      <h3 class="lbl" data-t="kd" style="margin-top:28px"></h3>
+      <ul class="done" id="done"></ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="spec" style="padding-top:0"><div class="w">
+  <div class="sh"><div class="tag">04 — <span data-t="t0"></span></div><h2 data-t="t1"></h2></div>
   <div class="spec-wrap">
     <table class="spec"><tbody id="spec-rows"></tbody></table>
     <p class="note" data-t="tnote"></p>
@@ -331,13 +377,13 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </div></section>
 
 <section style="padding-top:0" id="compare"><div class="w">
-  <div class="sh"><div class="tag">04 — <span data-t="c0"></span></div><h2 data-t="c1"></h2></div>
+  <div class="sh"><div class="tag">05 — <span data-t="c0"></span></div><h2 data-t="c1"></h2></div>
   <div class="scroll"><table class="cmp"><thead><tr><th></th><th data-t="ch1"></th><th data-t="ch2"></th><th data-t="ch3"></th><th class="us">Aquilo</th></tr></thead><tbody id="cmp-rows"></tbody></table></div>
   <p class="note" data-t="cnote"></p>
 </div></section>
 
 <section class="alt" id="market" style="background:var(--bg-2)"><div class="w">
-  <div class="sh"><div class="tag">05 — <span data-t="m0"></span></div><h2 data-t="m1"></h2></div>
+  <div class="sh"><div class="tag">06 — <span data-t="m0"></span></div><h2 data-t="m1"></h2></div>
   <div class="three">
     <div><h3 data-t="mh1"></h3><ul id="m-who"></ul></div>
     <div><h3 data-t="mh2"></h3><ul id="m-rev"></ul></div>
@@ -346,7 +392,7 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </div></section>
 
 <section id="workshop"><div class="w">
-  <div class="sh"><div class="tag">06 — <span data-t="g0"></span></div><h2 data-t="g1"></h2></div>
+  <div class="sh"><div class="tag">07 — <span data-t="g0"></span></div><h2 data-t="g1"></h2></div>
   <div class="gal">
     <div class="r">
       <figure style="flex:0.838"><picture><source type="image/webp" srcset="img/interior.webp"><img src="img/interior.jpg" width="1211" height="1445" alt="Working prototype, opened" loading="lazy"></picture><figcaption data-t="wcap"></figcaption></figure>
@@ -361,7 +407,9 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </div></section>
 
 <section style="padding-top:0" id="journey"><div class="w">
-  <div class="sh"><div class="tag">07 — <span data-t="j0"></span></div><h2 data-t="j1"></h2></div>
+  <div class="sh"><div class="tag">08 — <span data-t="j0"></span></div><h2 data-t="j1"></h2></div>
+  <h3 class="lbl" data-t="aw0" style="margin-bottom:12px"></h3>
+  <div class="awards" id="awards"></div>
   <ul class="logos" aria-label="Programmes and competitions">
     <li><img src="img/partners/npua.png" alt="National Polytechnic University of Armenia" loading="lazy"><span>NPUA</span></li>
     <li><img src="img/partners/liss24.png" alt="LISS24 Erasmus+ project" loading="lazy"><span>Erasmus+ LISS24</span></li>
@@ -374,16 +422,22 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </div></section>
 
 <section class="alt" id="team"><div class="w">
-  <div class="sh"><div class="tag">08 — <span data-t="e0"></span></div><h2 data-t="e1"></h2></div>
+  <div class="sh"><div class="tag">09 — <span data-t="e0"></span></div><h2 data-t="e1"></h2></div>
   <div class="team">
     <article><picture><source type="image/webp" srcset="img/p-levon.webp"><img src="img/p-levon.jpg" width="1016" height="1014" alt="Levon Soghomonyan" loading="lazy"></picture><h3 data-t="e1n"></h3><span class="lbl" data-t="e1r"></span><p data-t="e1p"></p></article>
-    <article><picture><source type="image/webp" srcset="img/p-mariam.webp"><img src="img/p-mariam.jpg" width="520" height="693" alt="Mariam Ghambaryan" loading="lazy"></picture><h3 data-t="e2n"></h3><span class="lbl" data-t="e2r"></span><p data-t="e2p"></p></article>
     <article><picture><source type="image/webp" srcset="img/p-arayik.webp"><img src="img/p-arayik.jpg" width="1100" height="1020" alt="Arayik Karapetyan" loading="lazy"></picture><h3 data-t="e3n"></h3><span class="lbl" data-t="e3r"></span><p data-t="e3p"></p></article>
+    <article><picture><source type="image/webp" srcset="img/p-mariam.webp"><img src="img/p-mariam.jpg" width="520" height="693" alt="Mariam Ghambaryan" loading="lazy"></picture><h3 data-t="e2n"></h3><span class="lbl" data-t="e2r"></span><p data-t="e2p"></p></article>
   </div>
+  <p class="note" data-t="e4" style="margin-top:28px"></p>
+</div></section>
+
+<section id="faq"><div class="w">
+  <div class="sh"><div class="tag">10 — <span data-t="q0"></span></div><h2 data-t="q1"></h2></div>
+  <div class="faq" id="faqs"></div>
 </div></section>
 
 <section class="dk contact" id="contact"><div class="w">
-  <div class="tag">09 — <span data-t="x0"></span></div>
+  <div class="tag">11 — <span data-t="x0"></span></div>
   <h2 data-t="x1"></h2>
   <p class="lead" data-t="x2"></p>
   <a class="mail" href="mailto:lsoghomonyan1@gmail.com">lsoghomonyan1@gmail.com</a>
@@ -411,123 +465,8 @@ const MV_SRC="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model
 const HOTSPOTS=["1.3m 3.5m 0m","0m 0.6m 0.9m","-0.9m 2.6m 0.4m","0m 4.2m 0.2m","0.3m 5.6m 0m","0m 7m 0m"];
 
 const T={
-en:{
-n0:"Station",n1:"Problem",n2:"How it works",n3:"Specification",n4:"Journey",n5:"Team",n6:"Contact",
-h0:"Ionization air purification · Yerevan",
-h1:"Outdoor air, cleaned at street level.",
-h2:"Aquilo is a seven-metre station that removes fine dust from open air using high-voltage ionization and a reusable metal collector. It is being developed by a three-person team from the National Polytechnic University of Armenia.",
-hb1:"Watch the station",hb2:"Get in touch",
-hcap:"Render of the full-size station. Design height about 7 m.",
-hnow:"Now: Green Tech Academy incubation programme by UATE, autumn 2026",
-v0:"Aquilo · 3D",v1:"The station, part by part",v2:"A 100-second render: each component of the station on its own, then the full assembly.",vplay:"Play video",
-ch:["Concrete body","Fan","Zinc-coated net","Tungsten wire","Wire-centring holder","Activated-carbon cap","Assembly"],
-d0:"Explore in 3D",d1:"Assembled",d2:"Exploded",d3:"Drag to rotate · tap a number to read about the part",
-dload:"Loading the 3D model…",dmiss:"The interactive 3D model is still being prepared. In the meantime, the video above shows every part.",
-hs:[["Concrete body","Hourglass shell, about 7 m tall. The narrow waist keeps the airflow turbulent."],["Fan","Industrial fan at the base. It draws polluted air in and pushes it upward."],["Zinc-coated net","Negatively charged mesh on the inner wall. Charged dust stays on it until the mesh is cleaned."],["Tungsten wire","Bare wire on the central axis at high positive voltage. It charges the particles passing by."],["Wire-centring holder","A tube and a ladder of discs that keep the wire exactly on the axis."],["Activated-carbon cap","Outlet layer that removes residual charge and ozone and absorbs harmful gases."]],
-lg3:"Georgian Technical University",
-pq:"Every day, people in big cities breathe air filled with fine dust from traffic and industry — and nobody cleans the air outdoors.",
-f1:"Station height",f2:"Particle classes targeted",f3:"Design airflow",f4b:"Solar + grid",f4:"Power supply",
-p0:"The problem",p1:"Most air purifiers are built for rooms. Pollution happens outside.",
-p2:"Fine particulate matter — PM2.5 and PM10 — comes from traffic, industry, construction, heating and waste burning. In Yerevan and in Armenia’s industrial zones its concentration regularly exceeds World Health Organization guideline values.",
-p3:"Particles this small pass through the nose and reach the lungs and bloodstream. Yet almost every purifier on the market is designed for indoor spaces, and the few outdoor towers that exist are experimental and expensive.",
-pf1:"premature deaths each year are linked to air pollution worldwide.",pf2:"PM2.5 particles are roughly thirty times thinner than a human hair.",pf3b:"$200k+",pf3:"typical cost of existing outdoor purification towers, according to our market research.",
-psrc:"Sources: WHO; Government of Armenia decision N1142 (14 Aug 2025); team research.",
-w0:"How it works",w1:"Four stages, no disposable filter cloth.",
-wcap:"Working prototype, opened. Visible: intake fan at the base, the central high-voltage wire and the collector mesh.",
-s1h:"Intake",s1p:"An industrial fan at the base draws polluted air in and pushes it upward. The body narrows towards the middle, which keeps the flow turbulent so that particles collide more often.",
-s2h:"Ionization",s2p:"A bare tungsten wire held at high positive voltage runs along the central axis. Dust particles and air molecules passing it become positively charged.",
-s3h:"Collection",s3p:"The inner wall is lined with a negatively charged, zinc-coated (galvanised) steel mesh. Charged particles are pulled onto it and stay there until the mesh is cleaned — nothing is thrown away.",
-s4h:"Outlet treatment",s4p:"Before leaving through the top, air passes an activated-carbon layer that removes residual charge and ozone and absorbs additional harmful gases.",
-wins:"The activated-carbon cap at the outlet. It acts as a safety stage rather than the main filter, so it lasts considerably longer.",
-t0:"Specification",t1:"What the full-size station is designed to do.",
-tnote:"All performance values are design targets for the full-size station and have not yet been verified in field tests. Laboratory and field testing are part of the current development plan.",
-spec:[["Height","~7 m","Hourglass profile, modular sections"],["Diameter","2.4 m waist · 3 m top",""],["Airflow","30,000–45,000 m³/h","≈ 1,000,000 m³ of air per day"],["Dust removed","0.5–1.5 kg/day","Depends on local pollution level"],["Cleaning principle","High-voltage ionization + electrostatic collection","Activated carbon at the outlet"],["Sensors","PM2.5/PM10 (laser), O₃ (electrochemical), MQ-135, MICS-6814, BME-280","Dust, ozone, NH₃, NOx, CO, VOCs, temperature, humidity, pressure"],["Controller","NUCLEO-WL55JC2","Low-power wireless (LoRa) link between stations and a server"],["Power","Solar panels + grid","Goal: energy self-sufficiency"],["Safety","Automatic shutdown","Cuts power within milliseconds on a short circuit"],["Target cost","≈ $20,000 per station",""]],
-c0:"Comparison",c1:"How Aquilo differs from existing approaches.",
-ch1:"Indoor HEPA purifiers",ch2:"Smog Free Tower (NL/CN)",ch3:"Xi’an solar tower (CN)",
-cmp:[["Environment","Indoors","Outdoors, small area","Outdoors, very large structure","Outdoors, street level"],["Consumables","Filters replaced regularly","Ionization, low waste","Filters require replacement","Reusable mesh; long-life carbon layer"],["Energy","Mains","Mains","Sunlight / greenhouse effect","Solar + grid"],["Monitoring","Rare","Limited","None","Networked real-time sensors"],["Cost","Low per unit","≈ $300,000","Very high","Target ≈ $20,000"]],
-cnote:"Based on publicly available descriptions and our own research. Figures for other projects are approximate.",
-m0:"Market",m1:"Who it is for, and how it pays for itself.",
-mh1:"Customers",mh2:"Revenue",mh3:"Roadmap",
-who:["Mining companies and quarries","Municipalities — parks, squares, schools","Construction sites","Industrial plants","Resorts, restaurants and commercial centres"],
-rev:["Sale of stations (B2B and B2G)","Monthly maintenance contracts","Remote monitoring and reporting","Later: advertising space, online platform"],
-road:["1 · Choose and validate the first customer group","2 · Fully working prototype (MVP), lab and field tests","3 · Pilot station with a first customer","4 · Investment, then sales in Armenia and the region"],
-g0:"Workshop",g1:"Built by hand, tested in the lab.",
-gc1:"3D-printed scale model.",gc2:"The team with the scale model.",gc3:"Assembling the electronics.",gc4:"Testing the prototype.",
-j0:"Journey",j1:"2026 so far.",
-tl:[["April 2026","NPUA Innovative Business Ideas competition","Aquilo was presented at the National Polytechnic University of Armenia, within the EU Erasmus+ LISS24 project.","2nd place",["npua1"]],
-["18–20 May 2026","International round, Tbilisi","The team represented NPUA at the international stage of the competition, hosted by the Georgian Technical University.","Represented NPUA",["tb2","tb4"]],
-["May 2026","High-tech “Idea Phase” grant","Application with a six-month plan: build a working prototype, run lab and field tests, prepare production documentation.","Applied",[]],
-["June 2026","Hackathon","Finished fifth, close behind fourth, with a limited budget.","5th place",[]],
-["June 2026","Social Impact Award Armenia","Selected for the SIA incubation programme as one of ten teams from several dozen applicants.","Selected",[]],
-["25 Jul – 1 Aug 2026","Seaside Startup Summit Armenia, Lake Sevan","A week of mentoring sessions, workshops and pitching in the Starter programme.","Participant",["ss2","ss1","ss4"]],
-["September 2026","Hayart centre","The prototype was installed at the Hayart centre and presented to a jury.","Exhibited",[]],
-["Oct 2026 – now","Green Tech Academy by UATE","Accepted after an interview into Armenia’s first incubation programme for renewable-energy and energy-efficiency startups. Twelve weeks of customer discovery, market validation and MVP testing, with mentors, internal demo days and a public Demo Day.","In progress",[]]],
-e0:"Team",e1:"Three engineering students from NPUA.",
-e1n:"Levon Soghomonyan",e1r:"Founder, Director · Nuclear energy",e1p:"Leads the company, grant applications and pitches. Responsible for overall engineering direction and thermodynamics.",
-e2n:"Mariam Ghambaryan",e2r:"Electrical power engineering",e2p:"Works on the electrical side of the station: power supply, high-voltage circuit and energy use.",
-e3n:"Arayik Karapetyan",e3r:"AI systems · Electronics",e3p:"Works on sensors, data and software: monitoring, the controller and coordination between stations.",
-x0:"Contact",x1:"Talk to us about a pilot.",x2:"We are looking for municipal and industrial partners, mentors and investors. We answer every message ourselves.",
-x3:"Phone",x4:"Location",x4v:"Yerevan, Armenia",x5:"Company",x5v:"Aquilo LLC",
-ft:"Prototype-stage project · Information site"},
-hy:{
-n0:"Կայանը",n1:"Խնդիրը",n2:"Ինչպես է աշխատում",n3:"Բնութագիր",n4:"Ճանապարհը",n5:"Թիմը",n6:"Կապ",
-h0:"Իոնիզացիոն օդամաքրում · Երևան",
-h1:"Բացօթյա օդի մաքրում՝ փողոցի մակարդակում։",
-h2:"Aquilo-ն մոտ յոթ մետր բարձրությամբ կայան է, որը բաց օդից հեռացնում է մանր փոշին՝ բարձրավոլտ իոնիզացիայի և բազմակի օգտագործման մետաղական հավաքիչի միջոցով։ Այն մշակում է Հայաստանի ազգային պոլիտեխնիկական համալսարանի եռանդամ թիմը։",
-hb1:"Դիտել կայանը",hb2:"Կապվել մեզ հետ",
-hcap:"Լիաչափ կայանի 3D պատկեր։ Նախագծային բարձրությունը՝ մոտ 7 մ։",
-hnow:"Այժմ՝ UATE-ի Green Tech Academy ինկուբացիոն ծրագիր, 2026թ. աշուն",
-v0:"Aquilo · 3D",v1:"Կայանը՝ մաս առ մաս",v2:"Մոտ 100 վայրկյան տևողությամբ 3D տեսանյութ՝ կայանի բաղադրիչները մեկ առ մեկ, ապա ամբողջական հավաքումը։",vplay:"Դիտել տեսանյութը",
-ch:["Բետոնե կորպուս","Օդափոխիչ","Ցինկապատ ցանց","Վոլֆրամե լար","Լարի կենտրոնացնող հենարան","Ակտիվացված ածխի ծածկ","Հավաքում"],
-d0:"Դիտել 3D-ով",d1:"Հավաքված",d2:"Բաց",d3:"Պտտեք մկնիկով կամ մատով · սեղմեք համարի վրա՝ մասի մասին կարդալու համար",
-dload:"3D մոդելը բեռնվում է…",dmiss:"Ինտերակտիվ 3D մոդելը դեռ պատրաստվում է։ Մինչ այդ վերևի տեսանյութը ցույց է տալիս բոլոր մասերը։",
-hs:[["Բետոնե կորպուս","Ավազի ժամացույցի ձևով պատյան՝ մոտ 7 մ բարձրությամբ։ Նեղ մեջտեղը օդահոսքը պահում է տուրբուլենտ։"],["Օդափոխիչ","Ներքևի արդյունաբերական օդափոխիչը ներս է քաշում աղտոտված օդը և մղում վերև։"],["Ցինկապատ ցանց","Ներսի պատի բացասական լիցքավորված ցանցը։ Լիցքավորված փոշին մնում է դրա վրա մինչև ցանցի մաքրումը։"],["Վոլֆրամե լար","Կենտրոնական առանցքի չմեկուսացված լարը՝ բարձր դրական լարման տակ։ Այն լիցքավորում է կողքով անցնող մասնիկները։"],["Լարի կենտրոնացնող հենարան","Խողովակ և սկավառակների շարք, որոնք լարը պահում են ճիշտ առանցքի վրա։"],["Ակտիվացված ածխի ծածկ","Ելքի շերտ, որը հեռացնում է մնացորդային լիցքն ու օզոնը և կլանում վնասակար գազերը։"]],
-lg3:"Վրաստանի տեխնիկական համալսարան",
-pq:"Մեծ քաղաքներում մարդիկ ամեն օր աղտոտված օդ են շնչում. մեքենաներն ու գործարանները օդը լցնում են մանր փոշիով, իսկ բացօթյա օդը ոչ ոք չի մաքրում։",
-f1:"Կայանի բարձրություն",f2:"Թիրախային մասնիկներ",f3:"Նախագծային օդահոսք",f4b:"Արև + էլեկտրացանց",f4:"Էլեկտրասնուցում",
-p0:"Խնդիրը",p1:"Օդամաքրիչների մեծ մասը սենյակների համար է։ Աղտոտվածությունը դրսում է։",
-p2:"PM2.5 և PM10 մանր մասնիկների աղբյուրներն են տրանսպորտը, արդյունաբերությունը, շինարարությունը, ջեռուցումը և աղբի այրումը։ Երևանում և Հայաստանի արդյունաբերական գոտիներում դրանց կոնցենտրացիան պարբերաբար գերազանցում է Առողջապահության համաշխարհային կազմակերպության ուղեցուցային արժեքները։",
-p3:"Այսքան մանր մասնիկներն անցնում են քթով և հասնում թոքերին ու արյանը։ Սակայն շուկայի գրեթե բոլոր օդամաքրիչները նախատեսված են փակ տարածքների համար, իսկ գոյություն ունեցող բացօթյա աշտարակները փորձարարական են և թանկ։",
-pf1:"վաղաժամ մահ ամեն տարի աշխարհում կապված է օդի աղտոտվածության հետ։",pf2:"PM2.5 մասնիկները մոտ երեսուն անգամ բարակ են մարդու մազից։",pf3b:"$200k+",pf3:"գոյություն ունեցող բացօթյա օդամաքրման աշտարակների բնորոշ արժեքը՝ ըստ մեր շուկայի ուսումնասիրության։",
-psrc:"Աղբյուրներ՝ ԱՀԿ, ՀՀ կառավարության 2025թ. օգոստոսի 14-ի N1142 որոշում, թիմի ուսումնասիրություն։",
-w0:"Ինչպես է աշխատում",w1:"Չորս փուլ՝ առանց փոխարինվող ֆիլտրերի։",
-wcap:"Գործող նախատիպը՝ բաց վիճակում։ Երևում են ներքևի օդափոխիչը, կենտրոնական բարձրավոլտ լարը և հավաքող ցանցը։",
-s1h:"Ներծծում",s1p:"Ներքևի արդյունաբերական օդափոխիչը ներս է քաշում աղտոտված օդը և մղում վերև։ Կորպուսը մեջտեղում նեղանում է, ինչի շնորհիվ հոսքը մնում է տուրբուլենտ, և մասնիկներն ավելի հաճախ են բախվում։",
-s2h:"Իոնիզացիա",s2p:"Կենտրոնական առանցքով ձգվում է բարձր դրական լարման տակ գտնվող չմեկուսացված վոլֆրամե լար։ Կողքով անցնող փոշու մասնիկներն ու օդի մոլեկուլները ստանում են դրական լիցք։",
-s3h:"Հավաքում",s3p:"Ներսի պատը պատված է բացասական լիցքավորված ցինկապատ պողպատե ցանցով։ Լիցքավորված մասնիկները ձգվում են դեպի այն և մնում են դրա վրա մինչև ցանցի մաքրումը։ Ոչինչ դեն չի նետվում։",
-s4h:"Ելքի մշակում",s4p:"Վերևից դուրս գալուց առաջ օդն անցնում է ակտիվացված ածխի շերտով, որը հեռացնում է մնացորդային լիցքն ու օզոնը և կլանում լրացուցիչ վնասակար գազեր։",
-wins:"Ելքի ակտիվացված ածխի ծածկը։ Այն անվտանգության փուլ է, ոչ թե հիմնական ֆիլտր, ուստի զգալիորեն ավելի երկար է ծառայում։",
-t0:"Բնութագիր",t1:"Լիաչափ կայանի նախագծային ցուցանիշները։",
-tnote:"Արդյունավետության բոլոր արժեքները լիաչափ կայանի նախագծային թիրախներ են և դեռ չեն ստուգվել դաշտային փորձարկումներում։ Լաբորատոր և դաշտային փորձարկումները ներառված են մշակման ընթացիկ պլանում։",
-spec:[["Բարձրություն","~7 մ","Ավազի ժամացույցի ձև, մոդուլային հատվածներ"],["Տրամագիծ","2.4 մ՝ մեջտեղում · 3 մ՝ վերևում",""],["Օդահոսք","30,000–45,000 մ³/ժ","≈ 1,000,000 մ³ օդ օրական"],["Հեռացվող փոշի","0.5–1.5 կգ/օր","Կախված է տեղի աղտոտվածությունից"],["Մաքրման սկզբունք","Բարձրավոլտ իոնիզացիա + էլեկտրաստատիկ հավաքում","Ակտիվացված ածուխ ելքում"],["Սենսորներ","PM2.5/PM10 (լազերային), O₃ (էլեկտրաքիմիական), MQ-135, MICS-6814, BME-280","Փոշի, օզոն, NH₃, NOx, CO, VOC, ջերմաստիճան, խոնավություն, ճնշում"],["Կառավարիչ","NUCLEO-WL55JC2","Էներգախնայող անլար (LoRa) կապ կայանների և սերվերի միջև"],["Սնուցում","Արևային վահանակներ + էլեկտրացանց","Նպատակը՝ էներգետիկ ինքնաբավություն"],["Անվտանգություն","Ավտոմատ անջատում","Կարճ միացման դեպքում անջատում է միլիվայրկյանների ընթացքում"],["Թիրախային արժեք","≈ $20,000 մեկ կայանի համար",""]],
-c0:"Համեմատություն",c1:"Ինչով է Aquilo-ն տարբերվում գոյություն ունեցող լուծումներից։",
-ch1:"Փակ տարածքի HEPA օդամաքրիչներ",ch2:"Smog Free Tower (Նիդեռլանդներ/Չինաստան)",ch3:"Սիանի արևային աշտարակ (Չինաստան)",
-cmp:[["Միջավայր","Փակ տարածք","Բացօթյա, փոքր տարածք","Բացօթյա, շատ մեծ կառույց","Բացօթյա, փողոցի մակարդակ"],["Ծախսանյութեր","Ֆիլտրերը պարբերաբար փոխվում են","Իոնիզացիա, քիչ թափոն","Ֆիլտրերը պետք է փոխվեն","Բազմակի օգտագործման ցանց, երկարակյաց ածխի շերտ"],["Էներգիա","Էլեկտրացանց","Էլեկտրացանց","Արև / ջերմոցային էֆեկտ","Արև + էլեկտրացանց"],["Մոնիթորինգ","Հազվադեպ","Սահմանափակ","Չկա","Իրական ժամանակում աշխատող, միմյանց կապված սենսորներ"],["Արժեք","Ցածր՝ մեկ սարքի համար","≈ $300,000","Շատ բարձր","Թիրախ ≈ $20,000"]],
-cnote:"Հիմնված է հրապարակային նկարագրությունների և մեր ուսումնասիրության վրա։ Այլ նախագծերի թվերը մոտավոր են։",
-m0:"Շուկա",m1:"Ում համար է և ինչպես է իրեն հատուցում։",
-mh1:"Հաճախորդներ",mh2:"Եկամուտ",mh3:"Զարգացման փուլեր",
-who:["Հանքարդյունաբերական ընկերություններ և քարհանքեր","Համայնքապետարաններ՝ այգիներ, հրապարակներ, դպրոցներ","Շինհրապարակներ","Արդյունաբերական ձեռնարկություններ","Հանգստավայրեր, ռեստորաններ և առևտրի կենտրոններ"],
-rev:["Կայանների վաճառք (B2B և B2G)","Ամսական սպասարկման պայմանագրեր","Հեռակա մոնիթորինգ և հաշվետվություններ","Հետագայում՝ գովազդային տարածք, առցանց հարթակ"],
-road:["1 · Առաջին հաճախորդների խմբի ընտրություն և վավերացում","2 · Լիարժեք աշխատող նախատիպ (MVP), լաբորատոր և դաշտային փորձարկումներ","3 · Փորձնական կայան առաջին հաճախորդի մոտ","4 · Ներդրում, ապա վաճառք Հայաստանում և տարածաշրջանում"],
-g0:"Արհեստանոց",g1:"Ձեռքով հավաքված, լաբորատորիայում փորձարկված։",
-gc1:"3D տպված մասշտաբային մոդել։",gc2:"Թիմը մասշտաբային մոդելի հետ։",gc3:"Էլեկտրոնիկայի հավաքում։",gc4:"Նախատիպի փորձարկում։",
-j0:"Ճանապարհը",j1:"2026 թվականը մինչ այժմ։",
-tl:[["2026թ. ապրիլ","ՀԱՊՀ «Նորարարական բիզնես գաղափարներ» մրցույթ","Aquilo-ն ներկայացվեց Հայաստանի ազգային պոլիտեխնիկական համալսարանում՝ ԵՄ Erasmus+ LISS24 նախագծի շրջանակում։","2-րդ տեղ",["npua1"]],
-["2026թ. մայիսի 18–20","Միջազգային փուլ, Թբիլիսի","Թիմը ներկայացրեց ՀԱՊՀ-ն մրցույթի միջազգային փուլում՝ Վրաստանի տեխնիկական համալսարանում։","Ներկայացրինք ՀԱՊՀ-ն",["tb2","tb4"]],
-["2026թ. մայիս","«Գաղափարի փուլ» դրամաշնորհ","Հայտ՝ վեցամսյա պլանով. գործող նախատիպ, լաբորատոր և դաշտային փորձարկումներ, արտադրական փաստաթղթեր։","Դիմել ենք",[]],
-["2026թ. հունիս","Հաքաթոն","Հինգերորդ տեղ՝ չորրորդից աննշան տարբերությամբ և սահմանափակ բյուջեով։","5-րդ տեղ",[]],
-["2026թ. հունիս","Social Impact Award Armenia","Մի քանի տասնյակ հայտերից ընտրվեցինք SIA ինկուբացիոն ծրագրի տասը թիմերից մեկը։","Ընտրված",[]],
-["2026թ. հուլիսի 25 – օգոստոսի 1","Seaside Startup Summit Armenia, Սևան","Մեկ շաբաթ մենթորական հանդիպումներ, աշխատարաններ և ելույթներ (pitch)՝ Starter ծրագրի շրջանակում։","Մասնակից",["ss2","ss1","ss4"]],
-["2026թ. սեպտեմբեր","«Հայարտ» կենտրոն","Նախատիպը տեղադրվեց «Հայարտ» կենտրոնում և ներկայացվեց ժյուրիին։","Ցուցադրված",[]],
-["2026թ. հոկտեմբերից մինչ այժմ","UATE-ի Green Tech Academy","Հարցազրույցից հետո ընդունվեցինք Հայաստանում վերականգնվող էներգետիկայի և էներգաարդյունավետության ստարտափների առաջին ինկուբացիոն ծրագիր։ Տասներկու շաբաթ՝ հաճախորդների ուսումնասիրություն, շուկայի վավերացում և MVP-ի փորձարկում՝ մենթորներով, ներքին demo day-երով և հրապարակային Demo Day-ով։","Ընթացքում",[]]],
-e0:"Թիմը",e1:"ՀԱՊՀ-ի ճարտարագիտական երեք ուսանող։",
-e1n:"Լևոն Սողոմոնյան",e1r:"Հիմնադիր, տնօրեն · Ատոմային էներգետիկա",e1p:"Ղեկավարում է ընկերությունը, դրամաշնորհային հայտերը և ներկայացումները։ Պատասխանատու է ինժեներական ընդհանուր ուղղության և թերմոդինամիկայի համար։",
-e2n:"Մարիամ Ղամբարյան",e2r:"Էլեկտրաէներգետիկա",e2p:"Աշխատում է կայանի էլեկտրական մասի վրա՝ սնուցում, բարձրավոլտ շղթա և էներգասպառում։",
-e3n:"Արայիկ Կարապետյան",e3r:"AI համակարգեր · Էլեկտրոնիկա",e3p:"Աշխատում է սենսորների, տվյալների և ծրագրային մասի վրա՝ մոնիթորինգ, կառավարիչ և կայանների համակարգում։",
-x0:"Կապ",x1:"Խոսենք փորձնական կայանի մասին։",x2:"Փնտրում ենք համայնքային և արդյունաբերական գործընկերներ, մենթորներ և ներդրողներ։ Յուրաքանչյուր նամակի պատասխանում ենք անձամբ։",
-x3:"Հեռախոս",x4:"Գտնվելու վայր",x4v:"Երևան, Հայաստան",x5:"Ընկերություն",x5v:"Ակվիլո ՍՊԸ",
-ft:"Նախատիպի փուլում գտնվող նախագիծ · Տեղեկատվական կայք"}
-};
+en:{"n1":"Problem","n2":"How it works","n3":"Pilot","n4":"Journey","n5":"Team","n6":"Contact","h0":"Ionization air purification · Yerevan","h1":"Outdoor air, cleaned at street level.","h2":"Aquilo is a seven-metre station that cleans street air with high-voltage ionization — no HEPA filters to replace. It is built by students of the National Polytechnic University of Armenia, and the first station is planned for Yerevan in summer 2027.","hb1":"Watch the station","hb2":"Get in touch","hcap":"Render of the full-size station. Design height about 7 m.","hnow":"Now: Green Tech Academy incubation programme by UATE, autumn 2026","v0":"Aquilo · 3D","v1":"The station, part by part","v2":"A 100-second render: each component of the station on its own, then the full assembly.","vplay":"Play video","ch":["Concrete body","Fan","Zinc-coated net","Tungsten wire","Wire-centring holder","Activated-carbon cap","Assembly"],"d0":"Explore in 3D","d1":"Assembled","d2":"Exploded","d3":"Drag to rotate · tap a number to read about the part","dload":"Loading the 3D model…","dmiss":"The interactive 3D model is still being prepared. In the meantime, the video above shows every part.","hs":[["Concrete body","Hourglass shell, about 7 m tall. The narrow waist keeps the airflow turbulent."],["Fan","Industrial fan at the base. It draws polluted air in and pushes it upward."],["Zinc-coated net","Negatively charged mesh on the inner wall. Charged dust stays on it until the mesh is cleaned."],["Tungsten wire","Bare wire on the central axis at high positive voltage. It charges the particles passing by."],["Wire-centring holder","A tube and a ladder of discs that keep the wire exactly on the axis."],["Activated-carbon cap","Outlet layer that removes residual charge and ozone and absorbs harmful gases."]],"lg3":"Georgian Technical University","pq":"Air pollution takes 6.7 million lives a year worldwide. In Yerevan, the annual average level of harmful particles is six times the limit recommended by the WHO.","f1":"Station height","f2":"Air cleaned per hour","f3":"of particles removed from the air passing through","f4b":"−40–60%","f4":"Target PM2.5 and PM10 reduction around the station","p0":"The problem","p1":"The air we breathe every day.","p2":"According to the Yerevan Municipality’s sensors, the average PM2.5 air quality index (AQI) in November 2025 was 142 — unhealthy for sensitive groups. In the last ten days of the month it reached 180, unhealthy for everyone.","p3":"PM2.5 particles are about thirty times thinner than a human hair. They reach deep into the lungs, pass into the blood and cause respiratory and cardiovascular disease. Children, older people and people with breathing problems are the most vulnerable.","pf1":"lives lost to air pollution every year worldwide.","pf2":"Yerevan’s annual average of harmful particles, compared with the WHO guideline.","pf3b":"142 → 180","pf3":"PM2.5 AQI in Yerevan, November 2025: monthly average, then the last ten days.","psrc":"Sources: WHO; Yerevan Municipality air-quality sensors; Government of Armenia decision N1142 (14 Aug 2025).","w0":"How it works","w1":"Four stages, no HEPA filters.","wcap":"Working prototype, opened. Visible: intake fan at the base, the central high-voltage wire and the collector mesh.","s1h":"Intake","s1p":"An industrial fan at the base draws in polluted street air and pushes it upward. The body narrows towards the middle, which keeps the flow turbulent so that particles collide more often.","s2h":"Ionization","s2p":"A bare tungsten wire at high positive voltage runs along the central axis. It charges dust and other harmful particles in the air passing by.","s3h":"Collection","s3p":"Charged particles stick to the oppositely charged zinc-coated (galvanised) steel mesh that lines the inner wall. The mesh is simply cleaned and used again — there is no filter to throw away.","s4h":"Outlet treatment","s4p":"Before the air returns to the street, an activated-carbon layer absorbs gases and odours and removes residual ozone.","wins":"The activated-carbon cap. It is replaced only when needed: the station’s sensors show when the layer is saturated.","t0":"Specification","t1":"Design values for the full-size station.","tnote":"All performance values are design targets for the full-size station and have not yet been verified in field tests. Laboratory and field testing are part of the current development plan.","spec":[["Height","~7 m","Hourglass profile, modular sections"],["Diameter","2.4 m waist · 3 m top",""],["Airflow","30,000–45,000 m³/h","≈ 1,000,000 m³ of air per day"],["Dust removed","0.5–1.5 kg/day","Depends on local pollution level"],["Cleaning principle","High-voltage ionization + electrostatic collection","Activated carbon at the outlet"],["Particle removal","Up to 99%","Of the particles in the air passing through the station"],["Target effect","−40–60% PM2.5 and PM10","Around the station"],["Weather protection","IP65 enclosures for electrical parts","Works all year, including winter"],["Open data","PM2.5, PM10, O₃ published online","Real-time"],["Sensors","PM2.5/PM10 (laser), O₃ (electrochemical), MQ-135, MICS-6814, BME-280","Dust, ozone, NH₃, NOx, CO, VOCs, temperature, humidity, pressure"],["Controller","NUCLEO-WL55JC2","Low-power wireless (LoRa) link between stations and a server"],["Power","Solar panels + grid","Goal: energy self-sufficiency"],["Safety","Automatic shutdown","Cuts power within milliseconds on a short circuit"],["Target cost","≈ $20,000 per station",""]],"c0":"Comparison","c1":"How Aquilo differs from existing approaches.","ch1":"Indoor HEPA purifiers","ch2":"Smog Free Tower (NL/CN)","ch3":"Xi’an solar tower (CN)","cmp":[["Environment","Indoors","Outdoors, small area","Outdoors, very large structure","Outdoors, street level"],["Consumables","Filters replaced regularly","Ionization, low waste","Filters require replacement","Reusable mesh; carbon layer replaced when saturated"],["Energy","Mains","Mains","Sunlight / greenhouse effect","Solar + grid"],["Monitoring","Rare","Limited","None","Real-time sensors, open data"],["Cost","Low per unit","≈ $300,000","Very high","Target ≈ $20,000"]],"cnote":"Based on publicly available descriptions and our own research. Figures for other projects are approximate.","m0":"Market","m1":"Who it is for, and how it pays for itself.","mh1":"Customers","mh2":"Revenue","mh3":"Roadmap","who":["Mining companies and quarries","Municipalities — parks, squares, schools","Construction sites","Industrial plants","Resorts, restaurants and commercial centres"],"rev":["Sale of stations (B2B and B2G)","Monthly maintenance contracts","Remote monitoring and reporting","Later: advertising space, online platform"],"road":["1 · Pilot station in Yerevan, summer 2027","2 · Air-quality measurements and public results","3 · Stations for other districts and industrial customers","4 · Investment, then sales in Armenia and the region"],"g0":"Workshop","g1":"Built by hand, tested in the lab.","gc1":"3D-printed scale model.","gc2":"The team with the scale model.","gc3":"Assembling the electronics.","gc4":"Testing the prototype.","j0":"Journey","j1":"2026 so far.","tl":[["April 2026","NPUA Innovative Business Ideas competition","Aquilo was presented at the National Polytechnic University of Armenia, within the EU Erasmus+ LISS24 project.","2nd place",["npua1"]],["18–20 May 2026","LISS24 international round, Tbilisi","The team represented NPUA at the international stage of the competition, hosted by the Georgian Technical University, and took third place.","3rd place",["tb2","tb4"]],["May 2026","High-tech “Idea Phase” grant","Application with a six-month plan: build a working prototype, run lab and field tests, prepare production documentation.","Applied",[]],["June 2026","Energy Hackathon, Yerevan Municipality","Aquilo won the Energy Hackathon organised by the Yerevan Municipality.","Winner",[]],["June 2026","Social Impact Award Armenia","Selected from several dozen applicants as one of ten teams in the SIA incubation programme, and received the jury prize.","Jury prize",[]],["25 Jul – 1 Aug 2026","Seaside Startup Summit Armenia, Lake Sevan","A week of mentoring sessions, workshops and pitching in the Starter programme.","Participant",["ss2","ss1","ss4"]],["September 2026","Hayart centre","The prototype was installed at the Hayart centre and presented to a jury.","Exhibited",[]],["Oct 2026 – now","Green Tech Academy by UATE","Accepted after an interview into Armenia’s first incubation programme for renewable-energy and energy-efficiency startups. Twelve weeks of customer discovery, market validation and MVP testing, with mentors, internal demo days and a public Demo Day.","In progress",[]]],"e0":"Team","e1":"Three engineering students from NPUA.","e1n":"Levon Soghomonyan","e1r":"Founder & CEO · Nuclear energy","e1p":"Leads strategy and engineering, from the structural design to the high-voltage system and software. Coordinates work with the Municipality and construction companies. Studies nuclear energy at NPUA and has experience in aerospace engineering.","e2n":"Mariam Ghambaryan","e2r":"Team assistant · Electrical power engineering","e2p":"Coordinates organisational and administrative matters. Studies electrical power engineering.","e3n":"Arayik Karapetyan","e3r":"Engineer-programmer · AI systems","e3p":"Responsible for the station’s 3D modelling, the online air-quality platform and this website. Studies AI systems and has experience in aerospace engineering.","x0":"Contact","x1":"Talk to us about a pilot.","x2":"We are looking for municipal and industrial partners, mentors and investors. We answer every message ourselves.","x3":"Phone","x4":"Location","x4v":"Yerevan, Armenia","x5":"Company","x5v":"Aquilo LLC","ft":"Prototype-stage project · Information site","n7":"FAQ","f1b":"7 m","f2b":"30–45k m³/h","f3b":"up to 99%","p4":"The main sources are construction, traffic and open-pit mines, and in winter also fuel burned for heating. It is not getting better: in October 2026 the PM2.5 index was 15% higher than a year earlier, and PM10 was 35% higher.","p5":"Air purifiers sold in Armenia work only indoors. Nothing cleans the air of streets, courtyards and playgrounds. Outdoor stations already exist abroad, in the Netherlands and China, but they are very expensive or need constant filter replacement.","pf1b":"6.7M","pf2b":"6×","pf4b":"+35%","pf4":"PM10 index in October 2026 compared with October 2025 (PM2.5: +15%).","wres":"Together, these stages remove up to 99% of the particles from the air that passes through the station.","k0":"Pilot","k1":"First station: Yerevan, summer 2027.","k2":"The first Aquilo station will run around the clock in Yerevan, on a site agreed with the Municipality. It will clean 30,000–45,000 m³ of air per hour, and the goal is to lower PM2.5 and PM10 levels around the station by 40–60%.","k3":"Its sensors will measure PM2.5, PM10 and ozone in real time, and the data will be published online for everyone. People will see how the air changes around the station, and the city will get a tested solution it can repeat in other districts. The open data will add to the city’s monitoring network, in line with Yerevan’s strategy for improving air quality.","kp":"Timeline","ph":[["Dec 2026 – Apr 2027","Final design, programming, purchase and import of components"],["Mar – Jul 2027","Assembly, testing and installation of the station"],["Jun – Aug 2027","Air-quality measurements and publication of the results"]],"kd":"Already done","done":["A working prototype has been built","A patent application for the invention has been filed","Recognised in international competitions, including ones held with EU support"],"aw0":"Recognition","aw":[["Social Impact Award Armenia","Jury prize, 2026"],["Energy Hackathon, Yerevan Municipality","Winner"],["LISS24 international competition, Georgia","3rd place"]],"e4":"For testing, the team can use NPUA laboratories and, when needed, consults experienced specialists from the energy sector.","q0":"FAQ","q1":"Common questions.","faq":[["Is the high voltage safe for passers-by?","Yes. All high-voltage parts are closed inside protective housings that passers-by cannot reach."],["Is the station dangerous for birds and animals?","No. Protective nets keep birds and animals away from the inner parts, and vibration and noise are kept to a minimum so that the station does not disturb people or animals."],["Does it withstand rain and winter?","The electrical parts sit in dust- and water-proof IP65 enclosures. The station works all year round, including winter, when air pollution is at its highest."],["Do filters need to be replaced?","The station has no HEPA filters. The collector mesh is cleaned regularly, and the activated-carbon layer is replaced only when needed: the station’s sensors show when it is saturated."],["Who will maintain the station?","The Aquilo team."],["Where will the first station be installed?","In Yerevan, on a site agreed with the Municipality."],["How many stations would Yerevan need?","To cover the whole city with clean-air zones, in theory more than 1,000. But air never stands still: wind keeps moving and mixing it, so each station’s effect spreads further, and the real number can be much smaller. It all starts with the first station."],["How will we know whether it works?","Air-quality data from the station’s sensors will be published online, so anyone can see how the air changes around it."]]},
+hy:{"n1":"Խնդիրը","n2":"Ինչպես է աշխատում","n3":"Փորձնական կայան","n4":"Ճանապարհը","n5":"Թիմը","n6":"Կապ","h0":"Իոնացումով օդի մաքրում · Երևան","h1":"Բացօթյա օդի մաքրում՝ փողոցի մակարդակում։","h2":"Ակվիլոն 7 մետր բարձրությամբ կայան է, որը փողոցի օդը մաքրում է բարձրավոլտ իոնացման միջոցով՝ առանց փոխարինվող HEPA ֆիլտրերի։ Այն ստեղծում են Հայաստանի ազգային պոլիտեխնիկական համալսարանի ուսանողները, իսկ առաջին կայանը նախատեսվում է գործարկել Երևանում 2027 թվականի ամռանը։","hb1":"Դիտել կայանը","hb2":"Կապվել մեզ հետ","hcap":"Լիաչափ կայանի 3D պատկեր։ Նախագծային բարձրությունը՝ մոտ 7 մ։","hnow":"Այժմ՝ UATE-ի Green Tech Academy ինկուբացիոն ծրագիր, 2026թ. աշուն","v0":"Aquilo · 3D","v1":"Կայանը՝ մաս առ մաս","v2":"Մոտ 100 վայրկյան տևողությամբ 3D տեսանյութ՝ կայանի բաղադրիչները մեկ առ մեկ, ապա ամբողջական հավաքումը։","vplay":"Դիտել տեսանյութը","ch":["Բետոնե կորպուս","Օդափոխիչ","Ցինկապատ ցանց","Վոլֆրամե լար","Լարի կենտրոնացնող հենարան","Ակտիվացված ածխի ծածկ","Հավաքում"],"d0":"Դիտել 3D-ով","d1":"Հավաքված","d2":"Բաց","d3":"Պտտեք մկնիկով կամ մատով · սեղմեք համարի վրա՝ մասի մասին կարդալու համար","dload":"3D մոդելը բեռնվում է…","dmiss":"Ինտերակտիվ 3D մոդելը դեռ պատրաստվում է։ Մինչ այդ վերևի տեսանյութը ցույց է տալիս բոլոր մասերը։","hs":[["Բետոնե կորպուս","Ավազի ժամացույցի ձևով պատյան՝ մոտ 7 մ բարձրությամբ։ Նեղ մեջտեղը օդահոսքը պահում է տուրբուլենտ։"],["Օդափոխիչ","Ներքևի արդյունաբերական օդափոխիչը ներս է քաշում աղտոտված օդը և մղում վերև։"],["Ցինկապատ ցանց","Ներսի պատի բացասական լիցքավորված ցանցը։ Լիցքավորված փոշին մնում է դրա վրա մինչև ցանցի մաքրումը։"],["Վոլֆրամե լար","Կենտրոնական առանցքի չմեկուսացված լարը՝ բարձր դրական լարման տակ։ Այն լիցքավորում է կողքով անցնող մասնիկները։"],["Լարի կենտրոնացնող հենարան","Խողովակ և սկավառակների շարք, որոնք լարը պահում են ճիշտ առանցքի վրա։"],["Ակտիվացված ածխի ծածկ","Ելքի շերտ, որը հեռացնում է մնացորդային լիցքն ու օզոնը և կլանում վնասակար գազերը։"]],"lg3":"Վրաստանի տեխնիկական համալսարան","pq":"Աղտոտված օդն աշխարհում ամեն տարի խլում է 6.7 միլիոն կյանք, իսկ Երևանում վնասակար մասնիկների տարեկան միջին մակարդակը 6 անգամ գերազանցում է ԱՀԿ-ի առաջարկած սահմանը։","f1":"Կայանի բարձրություն","f2":"Ժամում մաքրվող օդ","f3":"կայանով անցնող օդից հեռացվող մասնիկներ","f4b":"−40–60%","f4":"PM2.5 և PM10 մակարդակի նպատակային նվազում կայանի շրջակայքում","p0":"Խնդիրը","p1":"Օդը, որը շնչում ենք ամեն օր։","p2":"Երևանի քաղաքապետարանի սենսորների տվյալներով՝ 2025 թվականի նոյեմբերին PM2.5 մասնիկների օդի որակի միջին ինդեքսը (AQI) եղել է 142, ինչը վտանգավոր է զգայուն խմբերի համար։ Ամսվա վերջին տասն օրում այն հասել է 180-ի, այսինքն՝ օդը վնասակար է եղել բոլորի համար։","p3":"PM2.5 մասնիկները մարդու մազից մոտ 30 անգամ բարակ են։ Դրանք թափանցում են թոքերի խորքը, անցնում արյան մեջ և առաջացնում շնչառական ու սրտանոթային հիվանդություններ։ Ամենախոցելին երեխաներն են, տարեցները և շնչառական խնդիրներ ունեցող մարդիկ։","pf1":"կյանք է աշխարհում ամեն տարի խլում աղտոտված օդը։","pf2":"այնքան է Երևանում վնասակար մասնիկների տարեկան միջին մակարդակը գերազանցում ԱՀԿ-ի առաջարկած սահմանը։","pf3b":"142 → 180","pf3":"PM2.5-ի AQI ինդեքսը Երևանում 2025թ. նոյեմբերին՝ ամսական միջինը, ապա վերջին տասն օրը։","psrc":"Աղբյուրներ՝ ԱՀԿ, Երևանի քաղաքապետարանի օդի որակի սենսորներ, ՀՀ կառավարության 2025թ. օգոստոսի 14-ի N1142 որոշում։","w0":"Ինչպես է աշխատում","w1":"Չորս փուլ՝ առանց HEPA ֆիլտրերի։","wcap":"Գործող նախատիպը՝ բաց վիճակում։ Երևում են ներքևի օդափոխիչը, կենտրոնական բարձրավոլտ լարը և հավաքող ցանցը։","s1h":"Ներծծում","s1p":"Ներքևի արդյունաբերական օդափոխիչը ներս է քաշում փողոցի աղտոտված օդը և մղում վերև։ Կորպուսը մեջտեղում նեղանում է, ինչի շնորհիվ հոսքը մնում է տուրբուլենտ, և մասնիկներն ավելի հաճախ են բախվում։","s2h":"Իոնացում","s2p":"Կենտրոնական առանցքով ձգվում է բարձր դրական լարման տակ գտնվող չմեկուսացված վոլֆրամե լար։ Այն լիցքավորում է կողքով անցնող օդի փոշին և այլ վնասակար մասնիկները։","s3h":"Հավաքում","s3p":"Լիցքավորված մասնիկները կպչում են ներսի պատը պատող՝ հակառակ լիցքով ցինկապատ պողպատե ցանցին։ Ցանցը պարզապես մաքրվում և նորից օգտագործվում է. դեն նետվող ֆիլտր չկա։","s4h":"Ելքի մշակում","s4p":"Նախքան օդը փողոց վերադառնալը՝ ակտիվացված ածխի շերտը կլանում է գազերն ու հոտերը և հեռացնում մնացորդային օզոնը։","wins":"Ակտիվացված ածխի ծածկը։ Այն փոխարինվում է միայն ըստ անհրաժեշտության. երբ շերտը հագենում է, կայանի սենսորները դա ցույց են տալիս։","t0":"Բնութագիր","t1":"Լիաչափ կայանի նախագծային ցուցանիշները։","tnote":"Արդյունավետության բոլոր արժեքները լիաչափ կայանի նախագծային թիրախներ են և դեռ չեն ստուգվել դաշտային փորձարկումներում։ Լաբորատոր և դաշտային փորձարկումները ներառված են մշակման ընթացիկ պլանում։","spec":[["Բարձրություն","~7 մ","Ավազի ժամացույցի ձև, մոդուլային հատվածներ"],["Տրամագիծ","2.4 մ՝ մեջտեղում · 3 մ՝ վերևում",""],["Օդահոսք","30,000–45,000 մ³/ժ","≈ 1,000,000 մ³ օդ օրական"],["Հեռացվող փոշի","0.5–1.5 կգ/օր","Կախված է տեղի աղտոտվածությունից"],["Մաքրման սկզբունք","Բարձրավոլտ իոնացում + էլեկտրաստատիկ հավաքում","Ակտիվացված ածուխ ելքում"],["Մասնիկների հեռացում","Մինչև 99%","Կայանով անցնող օդից"],["Նպատակային ազդեցություն","PM2.5 և PM10՝ −40–60%","Կայանի շրջակայքում"],["Եղանակային պաշտպանություն","IP65 պատյաններ էլեկտրական մասերի համար","Աշխատում է ամբողջ տարին, այդ թվում՝ ձմռանը"],["Բաց տվյալներ","PM2.5, PM10, O₃՝ առցանց","Իրական ժամանակում"],["Սենսորներ","PM2.5/PM10 (լազերային), O₃ (էլեկտրաքիմիական), MQ-135, MICS-6814, BME-280","Փոշի, օզոն, NH₃, NOx, CO, VOC, ջերմաստիճան, խոնավություն, ճնշում"],["Կառավարիչ","NUCLEO-WL55JC2","Էներգախնայող անլար (LoRa) կապ կայանների և սերվերի միջև"],["Սնուցում","Արևային վահանակներ + էլեկտրացանց","Նպատակը՝ էներգետիկ ինքնաբավություն"],["Անվտանգություն","Ավտոմատ անջատում","Կարճ միացման դեպքում անջատում է միլիվայրկյանների ընթացքում"],["Թիրախային արժեք","≈ $20,000 մեկ կայանի համար",""]],"c0":"Համեմատություն","c1":"Ինչով է Ակվիլոն տարբերվում գոյություն ունեցող լուծումներից։","ch1":"Փակ տարածքի HEPA օդամաքրիչներ","ch2":"Smog Free Tower (Նիդեռլանդներ/Չինաստան)","ch3":"Սիանի արևային աշտարակ (Չինաստան)","cmp":[["Միջավայր","Փակ տարածք","Բացօթյա, փոքր տարածք","Բացօթյա, շատ մեծ կառույց","Բացօթյա, փողոցի մակարդակ"],["Ծախսանյութեր","Ֆիլտրերը պարբերաբար փոխվում են","Իոնիզացիա, քիչ թափոն","Ֆիլտրերը պետք է փոխվեն","Բազմակի օգտագործման ցանց, ածխի շերտը փոխարինվում է հագենալիս"],["Էներգիա","Էլեկտրացանց","Էլեկտրացանց","Արև / ջերմոցային էֆեկտ","Արև + էլեկտրացանց"],["Մոնիթորինգ","Հազվադեպ","Սահմանափակ","Չկա","Իրական ժամանակի սենսորներ, բաց տվյալներ"],["Արժեք","Ցածր՝ մեկ սարքի համար","≈ $300,000","Շատ բարձր","Թիրախ ≈ $20,000"]],"cnote":"Հիմնված է հրապարակային նկարագրությունների և մեր ուսումնասիրության վրա։ Այլ նախագծերի թվերը մոտավոր են։","m0":"Շուկա","m1":"Ում համար է և ինչպես է իրեն հատուցում։","mh1":"Հաճախորդներ","mh2":"Եկամուտ","mh3":"Զարգացման փուլեր","who":["Հանքարդյունաբերական ընկերություններ և քարհանքեր","Համայնքապետարաններ՝ այգիներ, հրապարակներ, դպրոցներ","Շինհրապարակներ","Արդյունաբերական ձեռնարկություններ","Հանգստավայրեր, ռեստորաններ և առևտրի կենտրոններ"],"rev":["Կայանների վաճառք (B2B և B2G)","Ամսական սպասարկման պայմանագրեր","Հեռակա մոնիթորինգ և հաշվետվություններ","Հետագայում՝ գովազդային տարածք, առցանց հարթակ"],"road":["1 · Փորձնական կայան Երևանում, 2027թ. ամառ","2 · Օդի որակի չափումներ և արդյունքների հրապարակում","3 · Կայաններ այլ թաղամասերի և արդյունաբերական հաճախորդների համար","4 · Ներդրում, ապա վաճառք Հայաստանում և տարածաշրջանում"],"g0":"Արհեստանոց","g1":"Ձեռքով հավաքված, լաբորատորիայում փորձարկված։","gc1":"3D տպված մասշտաբային մոդել։","gc2":"Թիմը մասշտաբային մոդելի հետ։","gc3":"Էլեկտրոնիկայի հավաքում։","gc4":"Նախատիպի փորձարկում։","j0":"Ճանապարհը","j1":"2026 թվականը մինչ այժմ։","tl":[["2026թ. ապրիլ","ՀԱՊՀ «Նորարարական բիզնես գաղափարներ» մրցույթ","Ակվիլոն ներկայացվեց Հայաստանի ազգային պոլիտեխնիկական համալսարանում՝ ԵՄ Erasmus+ LISS24 նախագծի շրջանակում։","2-րդ տեղ",["npua1"]],["2026թ. մայիսի 18–20","LISS24 մրցույթի միջազգային փուլ, Թբիլիսի","Թիմը ներկայացրեց ՀԱՊՀ-ն մրցույթի միջազգային փուլում՝ Վրաստանի տեխնիկական համալսարանում, և զբաղեցրեց երրորդ տեղը։","3-րդ տեղ",["tb2","tb4"]],["2026թ. մայիս","«Գաղափարի փուլ» դրամաշնորհ","Հայտ՝ վեցամսյա պլանով. գործող նախատիպ, լաբորատոր և դաշտային փորձարկումներ, արտադրական փաստաթղթեր։","Դիմել ենք",[]],["2026թ. հունիս","Երևանի քաղաքապետարանի «Էներգետիկ հաքաթոն»","Ակվիլոն հաղթեց Երևանի քաղաքապետարանի կազմակերպած «Էներգետիկ հաքաթոն»-ում։","Հաղթող",[]],["2026թ. հունիս","Social Impact Award Armenia","Մի քանի տասնյակ հայտերից ընտրվեցինք SIA ինկուբացիոն ծրագրի տասը թիմերից մեկը և ստացանք ժյուրիի մրցանակը։","Ժյուրիի մրցանակ",[]],["2026թ. հուլիսի 25 – օգոստոսի 1","Seaside Startup Summit Armenia, Սևան","Մեկ շաբաթ մենթորական հանդիպումներ, աշխատարաններ և ելույթներ (pitch)՝ Starter ծրագրի շրջանակում։","Մասնակից",["ss2","ss1","ss4"]],["2026թ. սեպտեմբեր","«Հայարտ» կենտրոն","Նախատիպը տեղադրվեց «Հայարտ» կենտրոնում և ներկայացվեց ժյուրիին։","Ցուցադրված",[]],["2026թ. հոկտեմբերից մինչ այժմ","UATE-ի Green Tech Academy","Հարցազրույցից հետո ընդունվեցինք Հայաստանում վերականգնվող էներգետիկայի և էներգաարդյունավետության ստարտափների առաջին ինկուբացիոն ծրագիր։ Տասներկու շաբաթ՝ հաճախորդների ուսումնասիրություն, շուկայի վավերացում և MVP-ի փորձարկում՝ մենթորներով, ներքին demo day-երով և հրապարակային Demo Day-ով։","Ընթացքում",[]]],"e0":"Թիմը","e1":"ՀԱՊՀ-ի ճարտարագիտական երեք ուսանող։","e1n":"Լևոն Սողոմոնյան","e1r":"Հիմնադիր, գործադիր տնօրեն · Ատոմային էներգետիկա","e1p":"Ղեկավարում է նախագծի ռազմավարությունն ու ինժեներական աշխատանքը՝ կառուցվածքի նախագծումից մինչև բարձրավոլտ համակարգն ու ծրագրավորումը։ Համակարգում է համագործակցությունը քաղաքապետարանի և շինարարական ընկերությունների հետ։ Սովորում է ատոմային էներգետիկա ՀԱՊՀ-ում, ունի ավիատիեզերական ինժեներության փորձ։","e2n":"Մարիամ Ղամբարյան","e2r":"Թիմի օգնական · Էլեկտրաէներգետիկա","e2p":"Համակարգում է կազմակերպչական և վարչական հարցերը։ Սովորում է էլեկտրաէներգետիկա։","e3n":"Արայիկ Կարապետյան","e3r":"Ինժեներ-ծրագրավորող · Արհեստական բանականության համակարգեր","e3p":"Պատասխանատու է կայանի 3D մոդելավորման, օդի որակի առցանց հարթակի և այս կայքի մշակման համար։ Սովորում է արհեստական բանականության համակարգեր, ունի ավիատիեզերական ինժեներության փորձ։","x0":"Կապ","x1":"Խոսենք փորձնական կայանի մասին։","x2":"Փնտրում ենք համայնքային և արդյունաբերական գործընկերներ, մենթորներ և ներդրողներ։ Յուրաքանչյուր նամակի պատասխանում ենք անձամբ։","x3":"Հեռախոս","x4":"Գտնվելու վայր","x4v":"Երևան, Հայաստան","x5":"Ընկերություն","x5v":"Ակվիլո ՍՊԸ","ft":"Նախատիպի փուլում գտնվող նախագիծ · Տեղեկատվական կայք","n7":"Հարցեր","f1b":"7 մ","f2b":"30–45 հազ. մ³/ժ","f3b":"մինչև 99%","p4":"Օդն աղտոտում են շինարարությունը, տրանսպորտը, բաց հանքերը, իսկ ձմռանը նաև ջեռուցման համար վառելիքի այրումը։ Իրավիճակը չի բարելավվում. 2026 թվականի հոկտեմբերին PM2.5-ի ինդեքսը նախորդ տարվա նույն ամսվա համեմատ աճել է 15%-ով, իսկ PM10-ինը՝ 35%-ով։","p5":"Հայաստանում առկա օդամաքրիչները նախատեսված են միայն փակ տարածքների համար, իսկ փողոցների, բակերի և խաղահրապարակների օդը մաքրող լուծում դեռ չկա։ Աշխարհում քաղաքային կայաններ արդեն գործում են, օրինակ՝ Նիդեռլանդներում և Չինաստանում, բայց դրանք շատ թանկ են կամ պահանջում են ֆիլտրերի մշտական փոխարինում։","pf1b":"6.7 մլն","pf2b":"6×","pf4b":"+35%","pf4":"PM10-ի ինդեքսի աճը 2026թ. հոկտեմբերին՝ նախորդ տարվա նույն ամսվա համեմատ (PM2.5՝ +15%)։","wres":"Միասին այս փուլերը կայանով անցնող օդից հեռացնում են մասնիկների մինչև 99%-ը։","k0":"Փորձնական կայան","k1":"Առաջին կայանը՝ Երևանում, 2027 թվականի ամռանը։","k2":"Առաջին Ակվիլո կայանը շուրջօրյա կաշխատի Երևանում՝ քաղաքապետարանի հետ համաձայնեցված տարածքում։ Այն ժամում կմաքրի 30,000–45,000 մ³ օդ, իսկ նպատակն է կայանի շրջակայքում PM2.5 և PM10 մասնիկների մակարդակը նվազեցնել 40–60%-ով։","k3":"Սենսորները իրական ժամանակում կչափեն PM2.5, PM10 մասնիկները և օզոնը, իսկ տվյալները կհրապարակվեն առցանց հարթակում։ Ամեն ոք կտեսնի, թե ինչպես է փոխվում օդը կայանի շուրջ, իսկ քաղաքը կստանա փորձարկված լուծում, որը կարելի է կրկնել այլ թաղամասերում։ Բաց տվյալները կլրացնեն քաղաքի մոնիթորինգային ցանցը և համահունչ են Երևանի օդի որակի բարելավման ռազմավարությանը։","kp":"Իրականացման փուլերը","ph":[["2026թ. դեկտեմբեր – 2027թ. ապրիլ","Վերջնական նախագծում, ծրագրավորում, բաղադրիչների գնում և ներկրում"],["2027թ. մարտ – հուլիս","Կայանի հավաքում, թեստավորում և տեղադրում"],["2027թ. հունիս – օգոստոս","Օդի որակի չափումներ և արդյունքների հրապարակում"]],"kd":"Արդեն արված է","done":["Ստեղծվել է աշխատող նախատիպ","Ներկայացվել է գյուտի արտոնագրի հայտ","Նախագիծը ճանաչում է ստացել միջազգային մրցույթներում, այդ թվում՝ Եվրամիության աջակցությամբ անցկացվողներում"],"aw0":"Ճանաչում","aw":[["Social Impact Award Armenia","Ժյուրիի մրցանակ, 2026"],["Երևանի քաղաքապետարանի «Էներգետիկ հաքաթոն»","Հաղթող"],["LISS24 միջազգային մրցույթ, Վրաստան","3-րդ տեղ"]],"e4":"Փորձարկումների համար թիմը կարող է օգտվել ՀԱՊՀ լաբորատորիաներից, իսկ անհրաժեշտության դեպքում խորհրդակցում է էներգետիկայի ոլորտի փորձառու մասնագետների հետ։","q0":"Հարցեր","q1":"Հաճախ տրվող հարցեր։","faq":[["Անվտա՞նգ է բարձր լարումը անցորդների համար։","Այո։ Բարձրավոլտ մասերը փակված են պաշտպանված պատյաններում և անհասանելի են անցորդների համար։"],["Վտանգավո՞ր է կայանը թռչունների և կենդանիների համար։","Ոչ։ Կայանը հագեցած է պաշտպանիչ ցանցերով, որոնք թույլ չեն տալիս թռչուններին և կենդանիներին հասնել ներքին մասերին, իսկ թրթռումներն ու աղմուկը նվազագույնի են հասցված, որպեսզի կայանը չանհանգստացնի ո՛չ մարդկանց, ո՛չ կենդանիներին։"],["Կայանը դիմանո՞ւմ է անձրևին և ձմռանը։","Էլեկտրական մասերը տեղադրված են փոշուց և ջրից պաշտպանված IP65 պատյաններում։ Կայանն աշխատում է ամբողջ տարին, այդ թվում՝ ձմռանը, երբ օդի աղտոտվածությունն ամենաբարձրն է։"],["Պե՞տք է արդյոք ֆիլտրեր փոխել։","Կայանը HEPA ֆիլտրեր չունի։ Հավաքիչ ցանցը պարբերաբար մաքրվում է, իսկ ակտիվացված ածխի շերտը փոխարինվում է ըստ անհրաժեշտության. երբ այն հագենում է, կայանի սենսորները դա ցույց են տալիս։"],["Ո՞վ է սպասարկելու կայանը։","Կայանի սպասարկումն իրականացնելու է Ակվիլոյի թիմը։"],["Որտե՞ղ է տեղադրվելու առաջին կայանը։","Երևանում՝ քաղաքապետարանի հետ համաձայնեցված տարածքում։"],["Քանի՞ կայան է պետք Երևանը մաքուր պահելու համար։","Եթե ամբողջ քաղաքը ծածկենք մաքուր օդի գոտիներով, տեսականորեն կպահանջվի 1000-ից ավելի կայան։ Բայց օդը երբեք կանգնած չէ. քամին այն անընդհատ շարժում և խառնում է, ուստի յուրաքանչյուր կայանի ազդեցությունը տարածվում է ավելի լայն, և իրականում անհրաժեշտ կայանների թիվը կարող է զգալիորեն փոքր լինել։ Իսկ ամեն ինչ սկսվում է առաջին կայանից։"],["Ինչպե՞ս կիմանանք, որ կայանն աշխատում է։","Կայանի սենսորների տվյալները կհրապարակվեն առցանց, և յուրաքանչյուրը կտեսնի, թե ինչպես է փոխվում օդը կայանի շուրջ։"]]}};
 
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -586,6 +525,10 @@ function render(){
   $("#cmp-rows").innerHTML=t.cmp.map(r=>`<tr>${r.map((c,i)=>`<td${i===4?' class="us"':""}>${esc(c)}</td>`).join("")}</tr>`).join("");
   [["#m-who","who"],["#m-rev","rev"],["#m-road","road"]].forEach(([s,k])=>$(s).innerHTML=t[k].map(x=>`<li>${esc(x)}</li>`).join(""));
   $("#tl").innerHTML=t.tl.map(r=>`<div class="row"><time>${esc(r[0])}</time><div><h3>${esc(r[1])}</h3><p>${esc(r[2])}</p></div><div class="res">${esc(r[3])}</div>${r[4].length?`<div class="strip">${r[4].map(f=>pic(f)).join("")}</div>`:""}</div>`).join("");
+  $("#phases").innerHTML=t.ph.map(r=>`<li><time>${esc(r[0])}</time><span>${esc(r[1])}</span></li>`).join("");
+  $("#done").innerHTML=t.done.map(x=>`<li>${esc(x)}</li>`).join("");
+  $("#awards").innerHTML=t.aw.map(r=>`<div><b>${esc(r[1])}</b><span>${esc(r[0])}</span></div>`).join("");
+  $("#faqs").innerHTML=t.faq.map(r=>`<details><summary>${esc(r[0])}</summary><p>${esc(r[1])}</p></details>`).join("");
   $("#chaps").innerHTML=t.ch.map((c,i)=>`<button type="button" data-i="${i}"><b>${i<6?"0"+(i+1):"→"}</b><span>${esc(c)}</span><time>${fmt(CHAPTERS[i])}</time></button>`).join("");
   $$("#chaps button").forEach(b=>b.onclick=()=>startVideo(CHAPTERS[+b.dataset.i]));
   $("#chaps").setAttribute("aria-label",lang==="hy"?"Գլուխներ":"Chapters");
